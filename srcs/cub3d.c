@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/19 17:27:07 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:47:35 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	render(t_data *data)
 	draw_back(data);
 	while (i < WIDTH)
 	{
-		draw_column(data, 0 + i, HEIGHT - i/2);
+		draw_column(data, i, HEIGHT - i);
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/19 17:47:35 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/19 18:18:45 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	init_values(t_data *data)
 
 int main()
 {
-
 	t_data	data;
 
 	init_values(&data);

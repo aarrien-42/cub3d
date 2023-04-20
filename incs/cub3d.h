@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/19 17:27:10 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/20 16:46:17 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <errno.h>
+# include <math.h>
 # include "../incs/libft.h"
 # include "../mlx/mlx.h"
 
 #define HEIGHT 1080
 #define WIDTH 1920
+#define FOV M_PI/3
+#define CELL_SIZE 32
+#define RAYS 300
 
 typedef struct s_data {
 	void		*mlx;

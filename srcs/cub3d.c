@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/20 17:06:16 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/20 20:09:24 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,13 @@ void	init_values(t_data *data)
 	data->h_line = HEIGHT/2; // horizon line
 }
 
-int main()
+int main(int argc, char **argv)
 {
-	t_data	data;
-
-	init_values(&data);
+	(void)argc;
+	//t_data	data;
+	
+	check_file(argv[1]);
+/* 	init_values(&data);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "cub3D");
 	data.image = mlx_new_image (data.mlx, WIDTH, HEIGHT);
@@ -45,6 +47,6 @@ int main()
 	mlx_hook(data.win, 2, (1L << 0), &handle_keypress, &data);
 	mlx_hook(data.win, 17, 0, &handle_destroy, &data);
 	mlx_loop_hook(data.mlx, &render, &data);
-	mlx_loop(data.mlx);
+	mlx_loop(data.mlx); */
 	return (0);
 }

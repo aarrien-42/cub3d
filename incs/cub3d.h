@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/21 19:06:32 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/21 20:06:30 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,10 @@ void	check_token(char *argv);
 int		token(char *argv, char *token);
 int		repeated_or_null(int *cont, char *token);
 void	check_extension(const char *argv, const char *ext);
+
+/*-CHECK_MAP-*/
+void	check_map(char *argv);
+void	cont_token(char *argv);
 
 /*-CHECK_UTILS-*/
 int	ft_open(char *argv);

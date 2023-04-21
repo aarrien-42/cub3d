@@ -9,7 +9,7 @@ OBJF = objs
 INC = incs
 
 # Ficheros
-SRC_FILES = cub3d events draw check_file check_utils
+SRC_FILES = cub3d events draw check_file check_utils check_map
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 

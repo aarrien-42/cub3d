@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/20 20:09:24 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/24 18:35:24 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ void	init_values(t_data *data)
 int main(int argc, char **argv)
 {
 	(void)argc;
+	t_map		map;
 	//t_data	data;
 	
-	check_file(argv[1]);
+	check_file(argv[1], &map);
 /* 	init_values(&data);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "cub3D");

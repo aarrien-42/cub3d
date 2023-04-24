@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/21 20:06:30 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:44:39 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ typedef struct s_data {
 
 typedef struct s_map
 {
-	char	**texture;
+	char	*NO_img;
+	char	*SO_img;
+	char	*EA_img;
+	char	*WE_img;
 	int		*floor;
 	int		*ceiling;
 	char	**map;
@@ -65,18 +68,24 @@ void	draw_column(t_data *data, int x, int h);
 void	draw_back(t_data *data);
 
 /*-CHECK_FILE-*/
-int		check_file(char *map);
+int		check_file(char *argv, t_map *map);
 void	check_token(char *argv);
 int		token(char *argv, char *token);
 int		repeated_or_null(int *cont, char *token);
 void	check_extension(const char *argv, const char *ext);
 
 /*-CHECK_MAP-*/
-void	check_map(char *argv);
+void	check_map(char *argv, t_map *map);
 void	cont_token(char *argv);
+void	map(char *line, int fd);
 
 /*-CHECK_UTILS-*/
-int	ft_open(char *argv);
-int	ft_close(int fd);
+int		ft_open(char *argv);
+int		ft_close(int fd);
+void	split_free(char **str);
 
+/*-SAVE_TEXTURE*/
+void	get_image(char *line, char *token, t_map *map);
+void	save_texture(char **img_dir, char *token, t_map *map);
+int		open_texture(char *img_dir, char *token);
 #endif

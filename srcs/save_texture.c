@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 20:42:25 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/24 20:48:39 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:53:12 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	open_texture(char *img_dir, char *token)
 	fd = open(img_dir, O_RDONLY);
 	if( fd == -1)
 	{
-		printf("Error: Textura %s es erronea", token);
+		printf("Error: Direccion de la textura %s es erronea", token);
 		free(img_dir);
 		return(fd);
 	}

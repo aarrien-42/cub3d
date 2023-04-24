@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 20:42:25 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/24 20:44:57 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:48:39 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ void	save_texture(char **img_dir, char *token, t_map *map)
 
 void	get_image(char *line, char *token, t_map *map)
 {
-	//int fd;
 	char **img_dir;
-	(void)token;
 	
 	img_dir = ft_split(line, ' ');
 	save_texture(img_dir, token, map);

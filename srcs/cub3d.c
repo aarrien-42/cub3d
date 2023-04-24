@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/20 16:46:39 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:23:02 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,27 @@
 
 int	render(t_data *data)
 {
-	int i;
+	double posX = 7, posY = 3;
+	double dirX = -1, dirY = 0;
+	double planeX = 0, planeY = 0.66;
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	double	d;
+	int		x;
 
-	i = 0;
+	x = 0;
 	draw_back(data);
-	while (i < WIDTH)
+	while (x < WIDTH)
 	{
-		draw_column(data, i, HEIGHT - i);
-		i++;
+		cameraX = 2 * x / (double)WIDTH - 1;
+		rayDirX = dirX + (planeX * cameraX);
+		rayDirY = dirY + (planeY * cameraX);
+		d = raycast(rayDirX, rayDirY, posX, posY);
+		printf("wall height = %f\n", d);
+		if (d != 0)
+			draw_column(data, x, HEIGHT / d);
+		x++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);
 	return (0);

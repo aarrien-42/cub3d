@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/20 16:46:17 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/21 18:13:27 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,14 @@
 # include "../incs/libft.h"
 # include "../mlx/mlx.h"
 
-#define HEIGHT 1080
-#define WIDTH 1920
+#define HEIGHT 300
+#define WIDTH 600
 #define FOV M_PI/3
 #define CELL_SIZE 32
-#define RAYS 300
+#define RAYS 100
+#define VIEW_DIST 100
+
+int	color;
 
 typedef struct s_data {
 	void		*mlx;
@@ -55,5 +58,8 @@ int		encode_rgb(int red, int green, int blue);
 void	draw_pixel(t_data *data, int x, int y, int color);
 void	draw_column(t_data *data, int x, int h);
 void	draw_back(t_data *data);
+
+/*-RAYCAST-*/
+double	raycast(double rayDirX, double rayDirY, double posX, double posY);
 
 #endif

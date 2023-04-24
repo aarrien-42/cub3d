@@ -9,7 +9,7 @@ OBJF = objs
 INC = incs
 
 # Ficheros
-SRC_FILES = cub3d events draw
+SRC_FILES = cub3d events draw raycast
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 

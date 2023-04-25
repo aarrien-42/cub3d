@@ -6,13 +6,13 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:53:07 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/24 20:48:26 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/25 20:33:31 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	save_token(char *argv, t_map *map)
+void	save_token(char *argv, t_data *data)
 {
 	int		fd;
 	char	*line;
@@ -24,17 +24,17 @@ void	save_token(char *argv, t_map *map)
 		if(!line)
 			break ;
 		if (line[0] == 'N' && line[1] == 'O' )
-			get_image(line, "NO", map);
+			get_image(line, "NO", data);
 		else if (line[0] == 'S' && line[1] == 'O')
-			get_image(line, "SO", map);
+			get_image(line, "SO", data);
 		else if (line[0] == 'W' && line[1] == 'E')
-			get_image(line, "WE", map);
+			get_image(line, "WE", data);
 		else if (line[0] == 'E' && line[1] == 'A')
-			get_image(line, "EA", map);
-/* 		else if (line[0] == 'F')
-			get_color(line, 'F');
+			get_image(line, "EA", data);
+		else if (line[0] == 'F')
+			get_color(line, 'F', data);
 		else if (line[0] == 'C')
-			get_color(line, 'F'); */
+			get_color(line, 'F', data);
 	}
 	ft_close(fd);
 }
@@ -86,8 +86,9 @@ void	cont_token(char *argv)
 	ft_close(fd);
 }
 
-void	check_map(char *argv, t_map *map)
+void	check_map(char *argv, t_data *data)
 {
+	
 	cont_token(argv);
-	save_token(argv, map);
+	save_token(argv, data);
 }

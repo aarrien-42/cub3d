@@ -1,53 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_utils.c                                      :+:      :+:    :+:   */
+/*   free_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 17:24:21 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/25 16:53:53 by jdasilva         ###   ########.fr       */
+/*   Created: 2023/04/25 16:37:33 by jdasilva          #+#    #+#             */
+/*   Updated: 2023/04/25 19:38:20 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_open(char *argv)
+void ft_texture_free(t_map *map, int flag)
 {
-	int	fd;
-
-	fd = open(argv, O_RDONLY);
-	if (fd == -1)
-	{
-		perror("Error open");
-		exit(-1);
-	}
-	return (fd);
-}
-
-int	ft_close(int fd)
-{
-	close(fd);
-	if (fd == -1)
-	{
-		perror("Error close");
-		exit(-1);
-	}
-	return (fd);
-}
-
-void	split_free(char **str)
-{
-	int i;
-
-	i = -1;
-	if(str)
-	{
-		while(str[++i])
-		{
-			if(str[i])
-				free(str[i]);
-		}
-		free(str);
-	}
+	if (map->NO_img)
+		free(map->NO_img);
+	if (map->SO_img)
+		free(map->SO_img);
+	if (map->EA_img)
+		free(map->EA_img);
+	if (map->WE_img)
+		free(map->WE_img);
+	free(map);
+	if (flag == 1)
+		exit (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:20:46 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/24 19:21:42 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:24:57 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,11 @@ void	check_token(char *argv)
 		exit(-1);
 }
 
-int	check_file(char *argv, t_map *map)
+int	check_file(char *argv, t_data *data)
 {
 	check_extension(argv, ".cub");
 	check_token(argv);
-	check_map(argv, map);
+	check_map(argv, data);
 	printf("todo perfecto\n");
 	return (0);
 }

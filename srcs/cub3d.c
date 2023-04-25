@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/24 15:23:02 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:25:15 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,53 @@
 
 int	render(t_data *data)
 {
-	double posX = 7, posY = 3;
-	double dirX = -1, dirY = 0;
-	double planeX = 0, planeY = 0.66;
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
+	int		px = data->px, py = data->py;
+	double	ra;
 	double	d;
+	int		i;
 	int		x;
 
+	i = 0;
 	x = 0;
 	draw_back(data);
-	while (x < WIDTH)
+	printf("\n\n================================\n\n");
+	while (i < RAYS)
 	{
-		cameraX = 2 * x / (double)WIDTH - 1;
-		rayDirX = dirX + (planeX * cameraX);
-		rayDirY = dirY + (planeY * cameraX);
-		d = raycast(rayDirX, rayDirY, posX, posY);
-		printf("wall height = %f\n", d);
-		if (d != 0)
-			draw_column(data, x, HEIGHT / d);
-		x++;
+		if (data->pa < 0)
+			data->pa += 2 * M_PI;
+		if (data->pa > 2 * M_PI)
+			data->pa -= 2 * M_PI;
+		ra = data->pa - (FOV / 2) + (FOV / RAYS * i);
+		if (ra < 0)
+			ra += 2 * M_PI;
+		if (ra > 2 * M_PI)
+			ra -= 2 * M_PI;
+		printf("RA = %f deg (%f rad)\n", rad_to_deg(ra), ra);
+		printf("NORMALIZED = %f deg (%f rad)\n", rad_to_deg(normalize(ra)), normalize(ra));
+		d = raycast(ra, px, py, data);
+		//printf("rayos por cada x = %f\n", (double)WIDTH / RAYS);
+		printf("wall distance = %f\n---------------------\n", d);
+		while (1)
+		{
+			//printf("camerax = %d and rays nº %d\n", x, i);
+			draw_column(data, x, 30000 / d);
+			x++;
+			if (x % (WIDTH / RAYS) == 0)
+				break;
+		}
+		i++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);
+	mlx_string_put(data->mlx, data->win, 50, 50, 0x00FFFFFF, ft_itoa((int)rad_to_deg(data->pa)));
 	return (0);
 }
 
 void	init_values(t_data *data)
 {
 	data->h_line = HEIGHT/2; // horizon line
+	data->pa = 0 * (M_PI / 180);
+	data->px = 96;
+	data->py = 96;
 }
 
 int main()

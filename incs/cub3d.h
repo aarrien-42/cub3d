@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/21 18:13:27 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:31:20 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #define HEIGHT 300
 #define WIDTH 600
 #define FOV M_PI/3
-#define CELL_SIZE 32
+#define UNIT 64
 #define RAYS 100
 #define VIEW_DIST 100
 
@@ -39,10 +39,14 @@ typedef struct s_data {
 	int			bpp;
 	int			size;
 	int			endian;
-	char		**map;
+	int			**map;
 	int			h_line;
 	int			map_w;
 	int			map_h;
+	double		pa;
+	double		px;
+	double		py;
+
 }				t_data;
 
 /*-CUB3D-*/
@@ -60,6 +64,10 @@ void	draw_column(t_data *data, int x, int h);
 void	draw_back(t_data *data);
 
 /*-RAYCAST-*/
-double	raycast(double rayDirX, double rayDirY, double posX, double posY);
+double	normalize(double angle);
+double	rad_to_deg(double angle);
+double	col_v(double ra, int px, int py, t_data *data);
+double	col_h(double ra, int px, int py, t_data *data);
+int		raycast(double ra, int px, int py, t_data *data);
 
 #endif

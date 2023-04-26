@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/25 20:33:50 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:29:31 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,22 @@ void	map(char *line, int fd);
 int		ft_open(char *argv);
 int		ft_close(int fd);
 void	split_free(char **str);
+void	open_texture(char *dir, char *token, t_map *map, int fd2);
+int		img_ext(char *img, char *ext, char *token, int fd);
+
+/*-CHECK_UTILS2*/
+int	check_texture(char *txt, char **dir, char *aux, int fd);
 
 /*-SAVE_TEXTURE*/
-void	get_image(char *line, char *token, t_data *data);
-void	save_texture(char **img_dir, char *token, t_map *map, t_data *data);
-void	open_texture(char *img_dir, char *token, t_map *map);
-void	img_extension(char *img_dir, char *ext, char *token, t_map *map);
-void	open_check_ext(char *texture, char *token, t_map *map, t_data *data);
+void	get_image(char *line, char *token, t_data *data, int fd);
+void	save_texture(char **dir, char *token, t_data *data, int fd);
+void	open_check_ext(char *texture, char *token, t_map *map, int fd);
+void	get_texture(char **dir, char *aux, t_data *data, int fd);
+int		check_texture(char *txt, char **dir, char *aux, int fd);
 
 /*-SAVE-COLOR*/
-void	get_color(char *line, char token, t_data *data);
+void	get_color(char *line, char token, t_data *data, int fd);
 
 /*-FREE_EXIT*/
-void ft_texture_free(t_map *map, int flag);
+void	ft_texture_free(t_map *map, int flag);
 #endif

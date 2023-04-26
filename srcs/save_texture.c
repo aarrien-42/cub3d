@@ -6,92 +6,72 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 20:42:25 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/25 20:27:39 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:08:40 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	img_extension(char *img_dir, char *ext, char *token, t_map *map)
+void	get_texture2(char **dir, char *aux, t_data *data, int fd)
 {
-	int	len;
+	int		w;
+	int		h;
 
-	len = ft_strlen(img_dir) - 4;
-	if (len < 0)
-		len = 0;
-	while (*(img_dir + len) && *ext)
+	if (!ft_strncmp(dir[0], "WE", 2))
 	{
-		if (*(img_dir + len) != *ext)
-		{
-			printf ("Error: La textura %s no es .xpm\n", token);
-			ft_texture_free(map, 1);
-		}
-		len++;
-		ext++;
+		data->t_map->WE_img = mlx_xpm_file_to_image(data->mlx, aux, &w, &h);
+		if (!check_texture(data->t_map->WE_img, dir, aux, fd))
+			ft_texture_free(data->t_map, 1);
+	}
+	else if (!ft_strncmp(dir[0], "EA", 2))
+	{
+		data->t_map->EA_img = mlx_xpm_file_to_image(data->mlx, aux, &w, &h);
+		if (!check_texture(data->t_map->EA_img, dir, aux, fd))
+			ft_texture_free(data->t_map, 1);
 	}
 }
 
-void	open_texture(char *img_dir, char *token, t_map *map)
+void	get_texture(char **dir, char *aux, t_data *data, int fd)
 {
-	int	fd;
+	int		w;
+	int		h;
 
-	fd = open (img_dir, O_RDONLY);
-	if (fd == -1)
+	if (!ft_strncmp(dir[0], "NO", 2))
 	{
-		printf("char: %s\n", img_dir);
-		printf("Error: Direccion de la textura %s es erronea\n", token);
+		data->t_map->NO_img = mlx_xpm_file_to_image(data->mlx, aux, &w, &h);
+		if (!check_texture(data->t_map->NO_img, dir, aux, fd))
+			ft_texture_free(data->t_map, 1);
+	}
+	else if (!ft_strncmp(dir[0], "SO", 2))
+	{
+		data->t_map->SO_img = mlx_xpm_file_to_image(data->mlx, aux, &w, &h);
+		if (!check_texture(data->t_map->SO_img, dir, aux, fd))
+			ft_texture_free(data->t_map, 1);
+	}
+	else
+		get_texture2(dir, aux, data, fd);
+}
+
+void	open_check_ext(char *texture, char *token, t_map *map, int fd)
+{
+	open_texture(texture, token, map, fd);
+	if(!img_ext(texture, ".xpm", token, fd))
 		ft_texture_free(map, 1);
-	}
-	ft_close(fd);
 }
 
-void	open_check_ext(char *texture, char *token, t_map *map, t_data *data)
+void	save_texture(char **dir, char *token, t_data *data, int fd)
 {
-/* 	int	width;
-	int	height; */
-	(void) data;
+	char	*aux;
 
-	open_texture(texture, token, map);
-	img_extension(texture, ".xpm", token, map);
-/* 	if (!mlx_xpm_file_to_image(data->mlx, texture, &width, &height))
-	{
-		perror("Error");
-		ft_texture_free(map, 1);
-	} */
+	aux = ft_substr(dir[1], 0, ft_strlen(dir[1]) - 1);
+	open_check_ext(aux, token, data->t_map, fd);
+	get_texture(dir, aux, data, fd);
 }
 
-void	save_texture(char **img_dir, char *token, t_map *map, t_data *data)
+void	get_image(char *line, char *token, t_data *data, int fd)
 {
-	if (!ft_strncmp(img_dir[0], "NO", 2))
-	{
-		map->NO_img = ft_substr(img_dir[1], 0, ft_strlen(img_dir[1]) - 1);
-		split_free(img_dir);
-		open_check_ext(map->NO_img, token, map, data);
-	}
-	else if (!ft_strncmp(img_dir[0], "SO", 2))
-	{
-		map->SO_img = ft_substr(img_dir[1], 0, ft_strlen(img_dir[1]) - 1);
-		split_free(img_dir);
-		open_check_ext(map->SO_img, token, map, data);
-	}
-	else if (!ft_strncmp(img_dir[0], "WE", 2))
-	{
-		map->WE_img = ft_substr(img_dir[1], 0, ft_strlen(img_dir[1]) - 1);
-		split_free(img_dir);
-		open_check_ext(map->WE_img, token, map, data);
-	}
-	else if (!ft_strncmp(img_dir[0], "EA", 2))
-	{
-		map->EA_img = ft_substr(img_dir[1], 0, ft_strlen(img_dir[1]) - 1);
-		split_free(img_dir);
-		open_check_ext(map->NO_img, token, map, data);
-	}
-}
+	char	**dir;
 
-void	get_image(char *line, char *token, t_data *data)
-{
-	char	**img_dir;
-
-	img_dir = ft_split(line, ' ');
-	save_texture(img_dir, token, data->t_map, data);
+	dir = ft_split(line, ' ');
+	save_texture(dir, token, data, fd);
 }

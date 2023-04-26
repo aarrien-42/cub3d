@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:53:07 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/25 20:33:31 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:42:14 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ void	save_token(char *argv, t_data *data)
 		if(!line)
 			break ;
 		if (line[0] == 'N' && line[1] == 'O' )
-			get_image(line, "NO", data);
+			get_image(line, "NO", data, fd);
 		else if (line[0] == 'S' && line[1] == 'O')
-			get_image(line, "SO", data);
+			get_image(line, "SO", data, fd);
 		else if (line[0] == 'W' && line[1] == 'E')
-			get_image(line, "WE", data);
+			get_image(line, "WE", data, fd);
 		else if (line[0] == 'E' && line[1] == 'A')
-			get_image(line, "EA", data);
+			get_image(line, "EA", data, fd);
 		else if (line[0] == 'F')
-			get_color(line, 'F', data);
+			get_color(line, 'F', data, fd);
 		else if (line[0] == 'C')
-			get_color(line, 'F', data);
+			get_color(line, 'C', data, fd);
 	}
 	ft_close(fd);
 }

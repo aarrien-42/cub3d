@@ -6,13 +6,11 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:03:31 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/25 12:59:54 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:09:32 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cub3d.h"
-
-int	unit = 64;
 
 double	normalize(double angle)
 {
@@ -38,10 +36,10 @@ double	distance(int px, int py, int cx, int cy)
 
 double	col_v(double ra, int px, int py, t_data *data)
 {
-	int	cx;
-	int	cy;
-	int	ix;
-	int	iy;
+	double	cx;
+	double	cy;
+	double	ix;
+	double	iy;
 	int map[6][11]= \
 	{
 	  {1,2,1,2,1,2,1,2,1,2,1},
@@ -51,43 +49,35 @@ double	col_v(double ra, int px, int py, t_data *data)
 	  {1,1,0,3,0,0,0,0,0,0,2},
 	  {1,1,1,1,3,1,2,1,2,1,1}
 	};
-	(void)data;
-	(void)map;
 
 	if (ra == (2 * M_PI) || ra == M_PI)
 		return (1e30);
 	if (ra < M_PI) // arriba
 	{
-		cy = py / unit * unit - 1;
-		iy = -unit;
+		cy = py / UNIT * UNIT - 1;
+		iy = -UNIT;
 	}
 	else // abajo
 	{
-		cy = py / unit * unit + unit;
-		iy = unit;
+		cy = py / UNIT * UNIT + UNIT;
+		iy = UNIT;
 	}
 	if (ra < M_PI / 2 || ra > 3*M_PI/2)
 	{
-		cx = px + (abs(cy - py) / tan(normalize(ra)));
+		cx = px + (fabs(cy - py) / tan(normalize(ra)));
 		ix = fabs(iy / tan(normalize(ra)));
 	}
 	else
 	{
-		cx = px - (abs(cy - py) / tan(normalize(ra)));
+		cx = px - (fabs(cy - py) / tan(normalize(ra)));
 		ix = -fabs(iy / tan(normalize(ra)));
 	}
-	printf("	V:");
-	printf("	cx = %d cy = %d | ix = %d iy = %d\n", cx, cy, ix, iy);
 	while (1)
 	{
-		if (cy/unit < 0 || cx/unit < 0 || cy/unit > data->map_h - 1 || cx/unit > data->map_w - 1)
+		if (cy/UNIT < 0 || cx/UNIT < 0 || cy/UNIT > data->map_h - 1 || cx/UNIT > data->map_w - 1)
 			return (1e30);
-		if (map[cy / unit][cx / unit] != 0)
-		{
-			printf("	FV:	cx = %d cy = %d\n", cx, cy);
-			printf("(ra = %f) posición en mapa (x = %d, y = %d) => [%d]\n", rad_to_deg(ra), cx / unit, cy / unit, map[cy / unit][cx / unit]);
+		if (map[(int)cy / UNIT][(int)cx / UNIT] != 0)
 			return (distance(px, py, cx, cy));
-		}
 		cx += ix;
 		cy += iy;
 	}
@@ -95,10 +85,10 @@ double	col_v(double ra, int px, int py, t_data *data)
 
 double	col_h(double ra, int px, int py, t_data *data)
 {
-	int	cx;
-	int	cy;
-	int	ix;
-	int	iy;
+	double	cx;
+	double	cy;
+	double	ix;
+	double	iy;
 	int map[6][11]= \
 	{
 	  {1,2,1,2,1,2,1,2,1,2,1},
@@ -108,43 +98,35 @@ double	col_h(double ra, int px, int py, t_data *data)
 	  {1,1,0,1,0,0,0,0,0,0,2},
 	  {1,1,1,1,2,1,2,1,2,1,1}
 	};
-	(void)data;
-	(void)map;
 
 	if (ra == M_PI / 2 || ra == 3*M_PI/2)
 		return (1e30);
 	if (ra < M_PI / 2 || ra > 3*M_PI/2) // derecha
 	{
-		cx = px / unit * unit + unit;
-		ix = unit;
+		cx = px / UNIT * UNIT + UNIT;
+		ix = UNIT;
 	}
 	else // izquierda
 	{
-		cx = px / unit * unit - 1;
-		ix = -unit;
+		cx = px / UNIT * UNIT - 1;
+		ix = -UNIT;
 	}
 	if (ra < M_PI)
 	{
-		cy = py - (abs(cx - px) * tan(normalize(ra)));
+		cy = py - (fabs(cx - px) * tan(normalize(ra)));
 		iy = -fabs(ix * tan(normalize(ra)));
 	}
 	else
 	{
-		cy = py + (abs(cx - px) * tan(normalize(ra)));
+		cy = py + (fabs(cx - px) * tan(normalize(ra)));
 		iy = fabs(ix * tan(normalize(ra)));
 	}
-	printf("	H:");
-	printf("	cx = %d cy = %d | ix = %d iy = %d\n", cx, cy, ix, iy);
 	while (1)
 	{
-		if (cy/unit < 0 || cx/unit < 0 || cy/unit > data->map_h - 1 || cx/unit > data->map_w - 1)
+		if (cy/UNIT < 0 || cx/UNIT < 0 || cy/UNIT > data->map_h - 1 || cx/UNIT > data->map_w - 1)
 			return (1e30);
-		if (map[cy / unit][cx / unit] != 0)
-		{
-			printf("	FH:	cx = %d cy = %d\n", cx, cy);
-			printf("(ra = %f) posición en mapa (x = %d, y = %d) => [%d]\n", rad_to_deg(ra), cx / unit, cy / unit, map[cy / unit][cx / unit]);
-			return (distance(px, py, cx, cy));
-		}
+		if (map[(int)cy / UNIT][(int)cx / UNIT] != 0)
+			return (distance(px, py,  cx, cy));
 		cx += ix;
 		cy += iy;
 	}
@@ -184,15 +166,11 @@ int	raycast(double ra, int px, int py, t_data *data)
 	double	dh;
 	double	dv;
 
-	//printf("posición en mapa (x = %d, y = %d) => [%d]\n", px / unit, py / unit, map[py / unit][px / unit]);
-	//printf("angulo de rayo = %f\n", ra);
 	dh = col_h(ra, px, py, data);
 	dv = col_v(ra, px, py, data);
-	printf("			DH => %f\n", dh);
-	printf("			DV => %f\n", dv);
 	if (dh < dv)
-		return (color = encode_rgb(77, 217, 25), dh);
+		return (color = encode_rgb(50, 136, 18), dh * cos(fabs(ra - data->pa)));
 	else
-		return (color = encode_rgb(50, 136, 18), dv);
+		return (color = encode_rgb(77, 217, 25), dv * cos(fabs(ra - data->pa)));
 	return(0);
 }

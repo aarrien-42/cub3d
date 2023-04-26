@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/25 13:31:20 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:39:23 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 # include "../incs/libft.h"
 # include "../mlx/mlx.h"
 
-#define HEIGHT 300
-#define WIDTH 600
+#define HEIGHT 1080
+#define WIDTH 1920
 #define FOV M_PI/3
 #define UNIT 64
-#define RAYS 100
-#define VIEW_DIST 100
+#define MOVE_SPEED 5
+#define ROTATE_SPEED 5
 
 int	color;
 
@@ -55,6 +55,7 @@ int		render(t_data *data);
 
 /*-EVENTS-*/
 int		handle_keypress(int keysym, t_data *data);
+int		handle_keyrelease(int keysym, t_data *data);
 int		handle_destroy(t_data *data);
 
 /*-DRAW-*/
@@ -62,6 +63,12 @@ int		encode_rgb(int red, int green, int blue);
 void	draw_pixel(t_data *data, int x, int y, int color);
 void	draw_column(t_data *data, int x, int h);
 void	draw_back(t_data *data);
+
+/*-MOVEMENTS-*/
+int	move_state(int code);
+int	move(t_data *data, double angle);
+int	move_gestor(int code, t_data *data);
+int	rotate_gestor(int code, t_data *data);
 
 /*-RAYCAST-*/
 double	normalize(double angle);

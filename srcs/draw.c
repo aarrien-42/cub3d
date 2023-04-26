@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:35:08 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/25 08:25:38 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/25 16:12:04 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	draw_column(t_data *data, int x, int h)
 	i = 0;
 	while (i < h)
 	{
-		if (data->h_line - h/2 + i > 0 && data->h_line - h/2 + i < HEIGHT)
+		if (data->h_line - h/2 + i >= 0 && data->h_line - h/2 + i < HEIGHT)
 			draw_pixel(data, x, data->h_line - h/2 + i, color);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/26 14:37:31 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/27 11:52:01 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,12 @@ int	render(t_data *data)
 	double	ra;
 	double	d;
 	int		i;
-	int		x;
 
 	i = 0;
-	x = 0;
 	draw_back(data);
 	while (i < WIDTH)
 	{
+		//printf("=============================\nray nº %d\n", i);
 		if (data->pa < 0)
 			data->pa += 2 * M_PI;
 		if (data->pa > 2 * M_PI)
@@ -39,9 +38,14 @@ int	render(t_data *data)
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);
-	mlx_string_put(data->mlx, data->win, 50, 50, 0x00FFFFFF, ft_itoa((int)rad_to_deg(data->pa)));
+	mlx_string_put(data->mlx, data->win, 10, 20, 0x00FFFFFF, ft_itoa((int)rad_to_deg(data->pa)));
+	mlx_string_put(data->mlx, data->win, 10, 30, 0x00FFFFFF, "x:");
+	mlx_string_put(data->mlx, data->win, 30, 30, 0x00FFFFFF, ft_itoa((int)rad_to_deg(data->px)));
+	mlx_string_put(data->mlx, data->win, 10, 40, 0x00FFFFFF, "y:");
+	mlx_string_put(data->mlx, data->win, 30, 40, 0x00FFFFFF, ft_itoa((int)rad_to_deg(data->py)));
 	move_gestor(0, data);
 	rotate_gestor(0, data);
+	//exit(0);
 	return (0);
 }
 

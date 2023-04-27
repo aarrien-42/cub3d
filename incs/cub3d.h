@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/27 19:48:58 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/27 20:02:57 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,15 @@ void	open_check_ext(char *texture, char *token, t_map *map, int fd);
 void	get_texture(char **dir, char *aux, t_data *data, int fd);
 int		check_texture(char *txt, char **dir, char *aux, int fd);
 
-/*-SAVE-COLOR*/
+/*-SAVE_COLOR*/
 void	get_color(char *line, char token, t_data *data, int fd);
 void	check_format(char *line, char token, t_data *data, int fd);
 void	cont_coma(char *line, char token, t_data *data, int fd);
 void	check_number(char **split_color, char token, t_data *data, int fd);
 void	save_number(char *line, char **split_color, t_data *data);
+
+/*-SAVE_MAP-*/
+void	save_map(char *argv, t_data *data);
 
 /*-FREE_EXIT*/
 void	ft_texture_free(t_map *map, int flag);

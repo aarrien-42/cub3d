@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:53:07 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/26 19:42:14 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/27 19:58:42 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,5 @@ void	check_map(char *argv, t_data *data)
 	
 	cont_token(argv);
 	save_token(argv, data);
+	save_map(argv, data);
 }

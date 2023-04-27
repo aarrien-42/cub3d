@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:10:57 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/27 19:54:23 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/27 21:13:40 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	cont_coma(char *line, char token, t_data *data, int fd)
 	cont = 0;
 	while (line[++i])
 	{
-		if (line[i] == ',' && (line[i + 1] == ' ' || line[i - 1] == ' ') \
-			&& cont < 2)
+		if (line[i] == ',' && (line[i + 1] == ' ' || line[i + 1] == '\n'\
+			|| line[i - 1] == ' ') && cont < 2)
 		{
 			ft_close(fd);
 			printf("Error: %c No puede a ver espacios en comas\n", token);

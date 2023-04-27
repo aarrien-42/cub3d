@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:03:31 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/27 12:12:43 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/27 12:48:18 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,109 +36,8 @@ double	distance(int px, int py, int cx, int cy)
 
 double	col_v(double ra, int px, int py, t_data *data)
 {
-	double	cx;
-	double	cy;
-	double	ix;
-	double	iy;
-	int map[6][11]= \
-	{
-	  {1,1,1,1,1,1,1,1,1,1,1},
-	  {1,0,0,1,0,0,1,0,0,0,1},
-	  {1,0,0,1,0,0,0,0,0,0,1},
-	  {1,0,0,1,0,0,0,0,0,1,1},
-	  {1,0,0,0,0,0,0,0,1,0,1},
-	  {1,1,1,1,1,1,1,1,1,1,1}
-	};
-
-	if (ra == (2 * M_PI) || ra == M_PI)
-		return (1e30);
-	if (ra < M_PI) // arriba
-	{
-		cy = py / UNIT * UNIT;
-		iy = -UNIT;
-	}
-	else // abajo
-	{
-		cy = py / UNIT * UNIT + UNIT;
-		iy = UNIT;
-	}
-	if (ra < M_PI / 2 || ra > 3*M_PI/2)
-	{
-		cx = px + (fabs(cy - py) / tan(normalize(ra)));
-		ix = fabs(iy / tan(normalize(ra)));
-	}
-	else
-	{
-		cx = px - (fabs(cy - py) / tan(normalize(ra)));
-		ix = -fabs(iy / tan(normalize(ra)));
-	}
-	if (ra < M_PI)
-		cy--;
-	while (1)
-	{
-		if (cy/UNIT < 0 || cx/UNIT < 0 || cy/UNIT > data->map_h - 1 || cx/UNIT > data->map_w - 1)
-			return (1e30);
-		if (map[(int)(cy / UNIT)][(int)(cx / UNIT)] != 0)
-			return (distance(px, py, cx, cy));
-		cx += ix;
-		cy += iy;
-	}
-}
-
-double	col_h(double ra, int px, int py, t_data *data)
-{
-	double	cx;
-	double	cy;
-	double	ix;
-	double	iy;
-	int map[6][11]= \
-	{
-	  {1,1,1,1,1,1,1,1,1,1,1},
-	  {1,0,0,1,0,0,1,0,0,0,1},
-	  {1,0,0,1,0,0,0,0,0,0,1},
-	  {1,0,0,1,0,0,0,0,0,1,1},
-	  {1,0,0,0,0,0,0,0,1,0,1},
-	  {1,1,1,1,1,1,1,1,1,1,1}
-	};
-
-	if (ra == M_PI / 2 || ra == 3*M_PI/2)
-		return (1e30);
-	if (ra > M_PI / 2 && ra < 3*M_PI/2) // izquierda
-	{
-		cx = px / UNIT * UNIT;
-		ix = -UNIT;
-	}
-	else // derecha
-	{
-		cx = px / UNIT * UNIT + UNIT;
-		ix = UNIT;
-	}
-	if (ra < M_PI)
-	{
-		cy = py - (fabs(cx - px) * tan(normalize(ra)));
-		iy = -fabs(ix * tan(normalize(ra)));
-	}
-	else
-	{
-		cy = py + (fabs(cx - px) * tan(normalize(ra)));
-		iy = fabs(ix * tan(normalize(ra)));
-	}
-	if (ra > M_PI / 2 && ra < 3*M_PI/2)
-		cx--;
-	while (1)
-	{
-		if (cy/UNIT < 0 || cx/UNIT < 0 || cy/UNIT > data->map_h - 1 || cx/UNIT > data->map_w - 1)
-			return (1e30);
-		if (map[(int)(cy / UNIT)][(int)(cx / UNIT)] != 0)
-			return (distance(px, py,  cx, cy));
-		cx += ix;
-		cy += iy;
-	}
-}
-
-int	raycast(double ra, int px, int py, t_data *data)
-{
-	/*int worldMap[24][24]= \
+	t_colision c;
+	int map[24][24]= \
 	{
 	  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -164,9 +63,111 @@ int	raycast(double ra, int px, int py, t_data *data)
 	  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-	};*/
-	data->map_h = 6;
-	data->map_w = 11;
+	};
+
+	if (ra == (2 * M_PI) || ra == M_PI)
+		return (1e30);
+	if (ra < M_PI) // arriba
+	{
+		c.cy = py / UNIT * UNIT;
+		c.iy = -UNIT;
+	}
+	else // abajo
+	{
+		c.cy = py / UNIT * UNIT + UNIT;
+		c.iy = UNIT;
+	}
+	if (ra < M_PI / 2 || ra > 3*M_PI/2)
+	{
+		c.cx = px + (fabs(c.cy - py) / tan(normalize(ra)));
+		c.ix = fabs(c.iy / tan(normalize(ra)));
+	}
+	else
+	{
+		c.cx = px - (fabs(c.cy - py) / tan(normalize(ra)));
+		c.ix = -fabs(c.iy / tan(normalize(ra)));
+	}
+	if (ra < M_PI)
+		c.cy--;
+	while (1)
+	{
+		if (c.cy/UNIT < 0 || c.cx/UNIT < 0 || c.cy/UNIT > data->map_h - 1 || c.cx/UNIT > data->map_w - 1)
+			return (1e30);
+		if (map[(int)(c.cy / UNIT)][(int)(c.cx / UNIT)] != 0)
+			return (distance(px, py, c.cx, c.cy));
+		c.cx += c.ix;
+		c.cy += c.iy;
+	}
+}
+
+double	col_h(double ra, int px, int py, t_data *data)
+{
+	t_colision c;
+	int map[24][24]= \
+	{
+	  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+	  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
+	  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+	};
+
+	if (ra == M_PI / 2 || ra == 3*M_PI/2)
+		return (1e30);
+	if (ra > M_PI / 2 && ra < 3*M_PI/2) // izquierda
+	{
+		c.cx = px / UNIT * UNIT;
+		c.ix = -UNIT;
+	}
+	else // derecha
+	{
+		c.cx = px / UNIT * UNIT + UNIT;
+		c.ix = UNIT;
+	}
+	if (ra < M_PI)
+	{
+		c.cy = py - (fabs(c.cx - px) * tan(normalize(ra)));
+		c.iy = -fabs(c.ix * tan(normalize(ra)));
+	}
+	else
+	{
+		c.cy = py + (fabs(c.cx - px) * tan(normalize(ra)));
+		c.iy = fabs(c.ix * tan(normalize(ra)));
+	}
+	if (ra > M_PI / 2 && ra < 3*M_PI/2)
+		c.cx--;
+	while (1)
+	{
+		if (c.cy/UNIT < 0 || c.cx/UNIT < 0 || c.cy/UNIT > data->map_h - 1 || c.cx/UNIT > data->map_w - 1)
+			return (1e30);
+		if (map[(int)(c.cy / UNIT)][(int)(c.cx / UNIT)] != 0)
+			return (distance(px, py, c.cx, c.cy));
+		c.cx += c.ix;
+		c.cy += c.iy;
+	}
+}
+
+int	raycast(double ra, int px, int py, t_data *data)
+{
 	double	dh;
 	double	dv;
 

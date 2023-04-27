@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/27 11:51:10 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/27 13:01:35 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,19 @@ typedef struct s_data {
 	double		pa;
 	double		px;
 	double		py;
-
 }				t_data;
 
+typedef struct s_colision {
+	double		cx;
+	double		cy;
+	double		ix;
+	double		iy;
+}				t_colision;
+
 /*-CUB3D-*/
-void	init_values(t_data *data);
+double	fix_angle(double angle);
 int		render(t_data *data);
+void	init_values(t_data *data);
 
 /*-EVENTS-*/
 int		handle_keypress(int keysym, t_data *data);
@@ -65,10 +72,9 @@ void	draw_column(t_data *data, int x, int h);
 void	draw_back(t_data *data);
 
 /*-MOVEMENTS-*/
-int	move_state(int code);
-int	move(t_data *data, double angle);
-int	move_gestor(int code, t_data *data);
-int	rotate_gestor(int code, t_data *data);
+int		move(t_data *data, double angle);
+int		move_gestor(int code, t_data *data);
+int		rotate_gestor(int code, t_data *data);
 
 /*-RAYCAST-*/
 double	normalize(double angle);

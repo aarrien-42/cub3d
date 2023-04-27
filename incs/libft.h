@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/24 19:19:00 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/27 19:20:09 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_strchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s1);
-
+int		ft_atoi(const char *str);
 char	*get_next_line(int fd);
 
 #endif

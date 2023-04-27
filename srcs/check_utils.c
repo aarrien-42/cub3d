@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 17:24:21 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/26 18:59:00 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/27 19:55:02 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ int	ft_close(int fd)
 
 void	split_free(char **str)
 {
-	int i;
+	int	i;
 
 	i = -1;
-	if(str)
+	if (str)
 	{
-		while(str[++i])
+		while (str[++i])
 		{
-			if(str[i])
+			if (str[i])
 				free(str[i]);
 		}
 		free(str);
@@ -59,9 +59,7 @@ void	open_texture(char *img_dir, char *token, t_map *map, int fd2)
 	fd = open (img_dir, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_close(fd);
 		ft_close(fd2);
-		printf("char: %s\n", img_dir);
 		printf("Error: Direccion de la textura %s es erronea\n", token);
 		ft_texture_free(map, 1);
 	}
@@ -81,10 +79,10 @@ int	img_ext(char *img, char *ext, char *token, int fd)
 		{
 			ft_close(fd);
 			printf ("Error: La textura %s no es .xpm\n", token);
-			return(0);
+			return (0);
 		}
 		len++;
 		ext++;
 	}
-	return(1);
+	return (1);
 }

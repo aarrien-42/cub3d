@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/25 20:10:05 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/27 19:10:30 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ int main(int argc, char **argv)
 	t_data		data;
 
 	data.t_map = (t_map *)malloc(sizeof(t_map));
+	if(!data.t_map)
+	{
+		perror("Malloc");
+		return(-1);
+	}
 	init_map(data.t_map);
 	check_file(argv[1], &data);
 /*	init_values(&data);

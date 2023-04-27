@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/26 19:29:31 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/27 19:48:58 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct s_map
 	char	*SO_img;
 	char	*EA_img;
 	char	*WE_img;
-	int		*floor;
-	int		*ceiling;
+	int		floor[3];
+	int		ceiling[3];
 	char	**map;
 }			t_map; 
 
@@ -88,7 +88,11 @@ void	open_texture(char *dir, char *token, t_map *map, int fd2);
 int		img_ext(char *img, char *ext, char *token, int fd);
 
 /*-CHECK_UTILS2*/
-int	check_texture(char *txt, char **dir, char *aux, int fd);
+int		check_texture(char *txt, char **dir, char *aux, int fd);
+void	check_number(char **split_color, char token, t_data *data, int fd);
+void	cont_number(char **split_color, char token, t_data *data, int fd);
+void	check_fin_color(char *line, int i, int fd, t_data *data);
+void	error_color(char token, int fd, t_data *data);
 
 /*-SAVE_TEXTURE*/
 void	get_image(char *line, char *token, t_data *data, int fd);
@@ -99,6 +103,10 @@ int		check_texture(char *txt, char **dir, char *aux, int fd);
 
 /*-SAVE-COLOR*/
 void	get_color(char *line, char token, t_data *data, int fd);
+void	check_format(char *line, char token, t_data *data, int fd);
+void	cont_coma(char *line, char token, t_data *data, int fd);
+void	check_number(char **split_color, char token, t_data *data, int fd);
+void	save_number(char *line, char **split_color, t_data *data);
 
 /*-FREE_EXIT*/
 void	ft_texture_free(t_map *map, int flag);

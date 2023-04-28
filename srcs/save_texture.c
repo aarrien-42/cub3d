@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 20:42:25 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/28 18:14:06 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:48:25 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	get_texture2(char **dir, char *aux, t_data *data, int fd)
 	}
 	else if (!ft_strncmp(dir[0], "EA", 2))
 	{
-		printf("aux: %s\n", aux);
 		data->t_map->EA_img = mlx_xpm_file_to_image(data->mlx, aux, &w, &h);
 		if (!check_texture(data->t_map->EA_img, dir, aux, fd))
 			ft_texture_free(data->t_map, 1);

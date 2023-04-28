@@ -1,5 +1,5 @@
-EA ./texture/link_down.xpm
-NO ./texture/link.xpm    
+NO ./texture/link.xpm
+EA ./texture/link.xpm    
 SO ./texture/link.xpm
 WE ./texture/link.xpm
 

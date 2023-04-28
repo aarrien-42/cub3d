@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:01:54 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/27 21:27:48 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:51:28 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	size_map(char *line, int fd, t_data *data)
 			break;
 		size ++;
 	}
-	data->t_map->map = (char **) malloc (size + 1 * sizeof(char *));
+	data->t_map->map = (char **) malloc (size * sizeof(char *));
 	if(!data->t_map->map)
 	{
 		perror("Error Map Malloc");
@@ -35,14 +35,28 @@ void	size_map(char *line, int fd, t_data *data)
 	printf("\nsize: %d\n", size);
 }
 
-void	save_map(char *argv, t_data *data)
+void	map_location(char *line, int fd, t_data *data)
+{
+	int		i;
+	size_t	c_line;
+
+	c_line = 0;
+	i = -1;
+	while (line[++i])
+		if (line[i] == '\t' || line[i] == '\n' || line[i] == '\v'\
+			|| line[i] == '\f' || line[i] == '\r' || line[i] == ' ')
+			c_line++;
+	if (ft_strlen(line) != c_line)
+		size_map(line, fd, data);
+}
+
+void	search_map(char *argv, t_data *data)
 {
 	int		fd;
 	char	*line;
 	int		cont;
-	int		i;
-	size_t	c_line;
-	(void)data;
+/* 	int		i;
+	size_t	c_line; */
 	
 	cont = 0;
 	fd = ft_open(argv);
@@ -58,14 +72,20 @@ void	save_map(char *argv, t_data *data)
 			cont ++;
 		else if (cont == 6)
 		{
-			c_line = 0;
+			map_location(line, fd, data);
+/* 			c_line = 0;
 			i = -1;
 			while (line[++i])
 				if (line[i] == '\t' || line[i] == '\n' || line[i] == '\v'\
 					|| line[i] == '\f' || line[i] == '\r' || line[i] == ' ')
 					c_line++;
 			if (ft_strlen(line) != c_line)
-				size_map(line, fd, data);
+				size_map(line, fd, data); */
 		}
 	}
+}
+
+void	save_map(char *argv, t_data *data)
+{
+	search_map(argv, data);
 }

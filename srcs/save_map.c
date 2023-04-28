@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:01:54 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/28 20:00:10 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:04:18 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	get_map(char *line, int fd, t_data *data)
 
 	data->t_map->map[0] = ft_strdup(line);
 	i = 0;
-	while(1)
+	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
@@ -35,16 +35,16 @@ void	size_map(char *line, int fd, t_data *data)
 	int	size;
 
 	size = 2;
-	while(1)
+	while (1)
 	{
 		line = get_next_line(fd);
-		if(!line)
-			break;
+		if (!line)
+			break ;
 		size ++;
 		free(line);
 	}
-	data->t_map->map = (char **) malloc (size  * sizeof(char *));
-	if(!data->t_map->map)
+	data->t_map->map = (char **)malloc(size * sizeof(char *));
+	if (!data->t_map->map)
 	{
 		perror("Error Map Malloc");
 		exit(-1);

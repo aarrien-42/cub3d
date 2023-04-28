@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:20:46 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/28 16:02:38 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/28 19:09:35 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,15 @@ int	token(char *argv, char *token)
 		if (!ft_strncmp(line, token, ft_strlen(token)))
 		{
 			if (line[ft_strlen(token)] != ' ')
-				return (printf("Error: %s no tiene espacio\n", token), 0);
+				return (free(line), \
+					printf("Error: %s no tiene espacio\n", token), 0);
 			cont ++;
 		}
+		free(line);
 	}
 	if (repeated_or_null(&cont, token))
-		return (ft_close(fd), 0);
-	return (ft_close(fd), 1);
+		return (free(line), ft_close(fd), 0);
+	return (free(line), ft_close(fd), 1);
 }
 
 void	check_token(char *argv)

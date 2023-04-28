@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:35:08 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/28 12:24:23 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:29:13 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	draw_back(t_data *data)
 		while(i < WIDTH)
 		{
 			if (j < data->h_line)
-				draw_pixel(data, i, j, encode_rgb(255, 100, 0));
+				draw_pixel(data, i, j, encode_rgb(data->t_map->ceiling[0], data->t_map->ceiling[1], data->t_map->ceiling[2]));
 			else
-				draw_pixel(data, i, j, encode_rgb(255, 255, 100));
+				draw_pixel(data, i, j, encode_rgb(data->t_map->floor[0], data->t_map->floor[1], data->t_map->floor[2]));
 			i++;
 		}
 		j++;

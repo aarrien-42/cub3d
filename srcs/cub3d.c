@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/28 16:15:52 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:26:42 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,6 @@ double	fix_angle(double angle)
 void	show_map(t_data *data)
 {
 	int	xy[2];
-	int map[24][24]= \
-	{
-	  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,1,1,1,1,1,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-	  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-	  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-	};
 
 	xy[1] = 0;
 	while (xy[1] < data->map_h)
@@ -58,7 +31,7 @@ void	show_map(t_data *data)
 		xy[0] = 0;
 		while (xy[0] < data->map_w)
 		{
-			if (map[xy[1]][xy[0]] != 0)
+			if (data->t_map->map[xy[1]][xy[0]] != 0)
 				draw_rect(xy, MAP_PIXEL, encode_rgb(0, 0, 0), data);
 			if (xy[0] == (int)data->px / UNIT && xy[1] == (int)data->py / UNIT)
 				draw_rect(xy, MAP_PIXEL, encode_rgb(255, 255, 255), data);
@@ -66,6 +39,13 @@ void	show_map(t_data *data)
 		}
 		xy[1]++;
 	}
+}
+void init_map(t_map *map)
+{
+	map->SO_img = NULL;
+	map->NO_img = NULL;
+	map->EA_img = NULL;
+	map->WE_img = NULL;
 }
 
 int	render(t_data *data)
@@ -100,7 +80,6 @@ int	loop(t_data *data)
 
 void	init_values(t_data *data)
 {
-<<<<<<< HEAD
 	data->h_line = HEIGHT / 2;
 	data->pa = 0 * (M_PI / 180);
 	data->map_h = 24;
@@ -109,17 +88,21 @@ void	init_values(t_data *data)
 	data->py = 160;
 }
 
-int	main(void)
+int main(int argc, char **argv)
 {
-=======
+	(void)argc;
+	t_data		data;
 
-	//prueba 2
-
->>>>>>> jdasilva
-	t_data	data;
-
+	data.t_map = (t_map *)malloc(sizeof(t_map));
+	if(!data.t_map)
+	{
+		perror("Malloc");
+		return(-1);
+	}
+	init_map(data.t_map);
+	check_file(argv[1], &data);
 	init_values(&data);
-	data.mlx = mlx_init();
+ 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "cub3D");
 	data.image = mlx_new_image (data.mlx, WIDTH, HEIGHT);
 	data.addr = mlx_get_data_addr(data.image, &data.bpp, &data.size, &data.endian);
@@ -128,6 +111,8 @@ int	main(void)
 	mlx_hook(data.win, 3, (1L << 1), &handle_keyrelease, &data);
 	mlx_hook(data.win, 17, 0, &handle_destroy, &data);
 	mlx_loop_hook(data.mlx, &loop, &data);
+	mlx_loop(data.mlx);
+	mlx_loop_hook(data.mlx, &render, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 20:42:25 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/28 18:48:25 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:33:01 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	get_image(char *line, char *token, t_data *data, int fd)
 	char	**dir;
 
 	dir = ft_split(line, ' ');
+	free(line);
 	if (ft_strlen(dir[1]) == 1)
 	{
 		ft_close(fd);

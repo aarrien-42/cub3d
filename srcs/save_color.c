@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:10:57 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/27 21:13:40 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:33:56 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,5 @@ void	get_color(char *line, char token, t_data *data, int fd)
 	cont_number(color_split, token, data, fd);
 	check_number(color_split, token, data, fd);
 	save_number(line, color_split, data);
+	free(line);
 }

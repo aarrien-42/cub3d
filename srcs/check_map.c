@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:53:07 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/27 19:58:42 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/28 21:01:22 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	save_token(char *argv, t_data *data)
 {
 	int		fd;
 	char	*line;
-	
+
 	fd = ft_open(argv);
-	while(1)
+	while (1)
 	{
 		line = get_next_line(fd);
-		if(!line)
+		if (!line)
 			break ;
 		if (line[0] == 'N' && line[1] == 'O' )
 			get_image(line, "NO", data, fd);
@@ -57,13 +57,26 @@ void	map(char *line, int fd)
 	}		
 }
 
+size_t	check_spaces(char *line)
+{
+	size_t	c_line;
+	int		i;
+
+	c_line = 0;
+	i = -1;
+	while (line[++i])
+		if (line[i] == '\t' || line[i] == '\n' || line[i] == '\v'\
+			|| line[i] == '\f' || line[i] == '\r' || line[i] == ' ')
+			c_line++;
+	return (c_line);
+}
+
 void	cont_token(char *argv)
 {
 	int		fd;
 	char	*line;
 	size_t	c_line;
 	int		cont;
-	int		i;
 
 	cont = 0;
 	fd = ft_open(argv);
@@ -72,23 +85,19 @@ void	cont_token(char *argv)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		c_line = 0;
-		i = -1;
-		while (line[++i])
-			if (line[i] == '\t' || line[i] == '\n' || line[i] == '\v'\
-				|| line[i] == '\f' || line[i] == '\r' || line[i] == ' ')
-				c_line++;
+		c_line = check_spaces(line);
 		if (ft_strlen(line) != c_line)
 			cont ++;
 		if (cont > 6)
 			map(line, fd);
+		free(line);
 	}
+	free(line);
 	ft_close(fd);
 }
 
 void	check_map(char *argv, t_data *data)
 {
-	
 	cont_token(argv);
 	save_token(argv, data);
 	save_map(argv, data);

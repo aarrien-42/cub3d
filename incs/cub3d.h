@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/28 21:00:58 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/04/28 21:18:17 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,13 @@ void	save_number(char *line, char **split_color, t_data *data);
 
 /*-SAVE_MAP-*/
 void	save_map(char *argv, t_data *data);
+void	search_map(char *argv, t_data *data, int flag);
+void	map_location(char *line, int fd, t_data *data, int flag);
+void	size_map(char *line, int fd, t_data *data);
+void	get_map(char *line, int fd, t_data *data);
+
+/*-MAP-*/
+void	read_map(t_data *data);
 
 /*-FREE_EXIT*/
 void	ft_texture_free(t_map *map, int flag);

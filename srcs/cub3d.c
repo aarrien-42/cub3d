@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/28 12:24:19 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:15:52 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int	loop(t_data *data)
 
 void	init_values(t_data *data)
 {
+<<<<<<< HEAD
 	data->h_line = HEIGHT / 2;
 	data->pa = 0 * (M_PI / 180);
 	data->map_h = 24;
@@ -110,6 +111,11 @@ void	init_values(t_data *data)
 
 int	main(void)
 {
+=======
+
+	//prueba 2
+
+>>>>>>> jdasilva
 	t_data	data;
 
 	init_values(&data);

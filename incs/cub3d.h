@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/27 13:01:35 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:24:35 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@
 # include "../incs/libft.h"
 # include "../mlx/mlx.h"
 
-#define HEIGHT 1080
-#define WIDTH 1920
+#define HEIGHT 640
+#define WIDTH 1080
 #define FOV M_PI/3
 #define UNIT 64
-#define MOVE_SPEED 5
-#define ROTATE_SPEED 5
+#define MOVE_SPEED 3
+#define ROTATE_SPEED 3
+#define MAP_PIXEL 4
 
 int	color;
 
@@ -57,7 +58,9 @@ typedef struct s_colision {
 
 /*-CUB3D-*/
 double	fix_angle(double angle);
+void	show_map(t_data *data);
 int		render(t_data *data);
+int		loop(t_data *data);
 void	init_values(t_data *data);
 
 /*-EVENTS-*/
@@ -68,6 +71,7 @@ int		handle_destroy(t_data *data);
 /*-DRAW-*/
 int		encode_rgb(int red, int green, int blue);
 void	draw_pixel(t_data *data, int x, int y, int color);
+void	draw_rect(int *oxy, int dim, int color, t_data *data);
 void	draw_column(t_data *data, int x, int h);
 void	draw_back(t_data *data);
 

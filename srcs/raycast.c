@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:03:31 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/27 12:48:18 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:45:17 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,51 @@
 
 double	normalize(double angle)
 {
-	if (angle<= M_PI/2)
+	if (angle <= M_PI / 2)
 		return (angle);
 	else if (angle <= M_PI)
 		return (M_PI - angle);
-	else if (angle <= 3*M_PI/2)
+	else if (angle <= 3 * M_PI / 2)
 		return (angle - M_PI);
 	else
-		return (2*M_PI - angle);
+		return (2 * M_PI - angle);
 }
 
 double	rad_to_deg(double angle)
 {
-	return (angle*180/M_PI);
+	return (angle * 180 / M_PI);
 }
 
 double	distance(int px, int py, int cx, int cy)
 {
 	return (sqrt(pow(abs(px - cx), 2) + pow(abs(py - cy), 2)));
+}
+
+int	calc_col_v_data(double ra, int px, int py, t_colision *c)
+{
+	if (ra < M_PI)
+	{
+		c->cy = py / UNIT * UNIT;
+		c->iy = -UNIT;
+	}
+	else
+	{
+		c->cy = py / UNIT * UNIT + UNIT;
+		c->iy = UNIT;
+	}
+	if (ra < M_PI / 2 || ra > 3 * M_PI / 2)
+	{
+		c->cx = px + (fabs(c->cy - py) / tan(normalize(ra)));
+		c->ix = fabs(c->iy / tan(normalize(ra)));
+	}
+	else
+	{
+		c->cx = px - (fabs(c->cy - py) / tan(normalize(ra)));
+		c->ix = -fabs(c->iy / tan(normalize(ra)));
+	}
+	if (ra < M_PI)
+		c->cy--;
+	return (0);
 }
 
 double	col_v(double ra, int px, int py, t_data *data)
@@ -43,7 +70,7 @@ double	col_v(double ra, int px, int py, t_data *data)
 	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+	  {1,1,1,1,1,1,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
 	  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
 	  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -65,39 +92,45 @@ double	col_v(double ra, int px, int py, t_data *data)
 	  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 	};
 
-	if (ra == (2 * M_PI) || ra == M_PI)
+	if (ra == (2 * M_PI) || ra == M_PI || ra == 0)
 		return (1e30);
-	if (ra < M_PI) // arriba
-	{
-		c.cy = py / UNIT * UNIT;
-		c.iy = -UNIT;
-	}
-	else // abajo
-	{
-		c.cy = py / UNIT * UNIT + UNIT;
-		c.iy = UNIT;
-	}
-	if (ra < M_PI / 2 || ra > 3*M_PI/2)
-	{
-		c.cx = px + (fabs(c.cy - py) / tan(normalize(ra)));
-		c.ix = fabs(c.iy / tan(normalize(ra)));
-	}
-	else
-	{
-		c.cx = px - (fabs(c.cy - py) / tan(normalize(ra)));
-		c.ix = -fabs(c.iy / tan(normalize(ra)));
-	}
-	if (ra < M_PI)
-		c.cy--;
+	calc_col_v_data(ra, px, py, &c);
 	while (1)
 	{
-		if (c.cy/UNIT < 0 || c.cx/UNIT < 0 || c.cy/UNIT > data->map_h - 1 || c.cx/UNIT > data->map_w - 1)
+		if (c.cy / UNIT < 0 || c.cx / UNIT < 0 || c.cy / UNIT > data->map_h - 1 || c.cx / UNIT > data->map_w - 1)
 			return (1e30);
 		if (map[(int)(c.cy / UNIT)][(int)(c.cx / UNIT)] != 0)
 			return (distance(px, py, c.cx, c.cy));
 		c.cx += c.ix;
 		c.cy += c.iy;
 	}
+}
+
+int	calc_col_h_data(double ra, int px, int py, t_colision *c)
+{
+	if (ra > M_PI / 2 && ra < 3 * M_PI / 2)
+	{
+		c->cx = px / UNIT * UNIT;
+		c->ix = -UNIT;
+	}
+	else
+	{
+		c->cx = px / UNIT * UNIT + UNIT;
+		c->ix = UNIT;
+	}
+	if (ra < M_PI)
+	{
+		c->cy = py - (fabs(c->cx - px) * tan(normalize(ra)));
+		c->iy = -fabs(c->ix * tan(normalize(ra)));
+	}
+	else
+	{
+		c->cy = py + (fabs(c->cx - px) * tan(normalize(ra)));
+		c->iy = fabs(c->ix * tan(normalize(ra)));
+	}
+	if (ra > M_PI / 2 && ra < 3 * M_PI / 2)
+		c->cx--;
+	return (0);
 }
 
 double	col_h(double ra, int px, int py, t_data *data)
@@ -109,7 +142,7 @@ double	col_h(double ra, int px, int py, t_data *data)
 	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+	  {1,1,1,1,1,1,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
 	  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
 	  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -131,33 +164,12 @@ double	col_h(double ra, int px, int py, t_data *data)
 	  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 	};
 
-	if (ra == M_PI / 2 || ra == 3*M_PI/2)
+	if (ra == M_PI / 2 || ra == 3 * M_PI / 2)
 		return (1e30);
-	if (ra > M_PI / 2 && ra < 3*M_PI/2) // izquierda
-	{
-		c.cx = px / UNIT * UNIT;
-		c.ix = -UNIT;
-	}
-	else // derecha
-	{
-		c.cx = px / UNIT * UNIT + UNIT;
-		c.ix = UNIT;
-	}
-	if (ra < M_PI)
-	{
-		c.cy = py - (fabs(c.cx - px) * tan(normalize(ra)));
-		c.iy = -fabs(c.ix * tan(normalize(ra)));
-	}
-	else
-	{
-		c.cy = py + (fabs(c.cx - px) * tan(normalize(ra)));
-		c.iy = fabs(c.ix * tan(normalize(ra)));
-	}
-	if (ra > M_PI / 2 && ra < 3*M_PI/2)
-		c.cx--;
+	calc_col_h_data(ra, px, py, &c);
 	while (1)
 	{
-		if (c.cy/UNIT < 0 || c.cx/UNIT < 0 || c.cy/UNIT > data->map_h - 1 || c.cx/UNIT > data->map_w - 1)
+		if (c.cy / UNIT < 0 || c.cx / UNIT < 0 || c.cy / UNIT > data->map_h - 1 || c.cx / UNIT > data->map_w - 1)
 			return (1e30);
 		if (map[(int)(c.cy / UNIT)][(int)(c.cx / UNIT)] != 0)
 			return (distance(px, py, c.cx, c.cy));
@@ -166,6 +178,7 @@ double	col_h(double ra, int px, int py, t_data *data)
 	}
 }
 
+// podría devolver una estructura t_colision, y calculariamos la distancia después
 int	raycast(double ra, int px, int py, t_data *data)
 {
 	double	dh;

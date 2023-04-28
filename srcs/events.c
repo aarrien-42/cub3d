@@ -6,24 +6,11 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:59:23 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/27 12:58:22 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:52:30 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cub3d.h"
-
-/*int	check_wall(int keysym, t_data *data)
-{
-	int map[6][11]= \
-	{
-	  {1,1,1,1,1,1,1,1,1,1,1},
-	  {1,0,0,0,0,0,0,0,0,0,1},
-	  {1,0,0,0,0,0,0,0,0,0,1},
-	  {1,0,0,0,0,0,0,0,0,0,1},
-	  {1,0,0,0,0,0,0,0,0,0,1},
-	  {1,1,1,1,1,1,1,1,1,1,1}
-	};
-}*/
 
 int	handle_keypress(int keysym, t_data *data)
 {
@@ -41,6 +28,10 @@ int	handle_keypress(int keysym, t_data *data)
 		rotate_gestor(1, data);
 	if (keysym == 124) // view right
 		rotate_gestor(3, data);
+	if (keysym == 126) // view up
+		rotate_gestor(5, data);
+	if (keysym == 125) // view down
+		rotate_gestor(7, data);
 	return (0);
 }
 
@@ -58,6 +49,10 @@ int	handle_keyrelease(int keysym, t_data *data)
 		rotate_gestor(2, data);
 	if (keysym == 124)
 		rotate_gestor(4, data);
+	if (keysym == 126)
+		rotate_gestor(6, data);
+	if (keysym == 125)
+		rotate_gestor(8, data);
 	return (0);
 }
 

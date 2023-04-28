@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:35:08 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/27 12:20:44 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:24:23 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,26 @@ void	draw_pixel(t_data *data, int x, int y, int color)
 
 	pos = data->addr + (y * data->size + x * (data->bpp / 8));
 	*(unsigned int *)pos = color;
+}
+
+void	draw_rect(int *oxy, int dim, int color, t_data *data)
+{
+	int	x;
+	int	y;
+	int	sep;
+
+	sep = 20;
+	y = 0;
+	while (y < dim)
+	{
+		x = 0;
+		while (x < dim)
+		{
+			draw_pixel(data, (oxy[0] * MAP_PIXEL) + x + sep, (oxy[1] * MAP_PIXEL) + y + sep, color);
+			x++;
+		}
+		y++;
+	}
 }
 
 void	draw_column(t_data *data, int x, int h)

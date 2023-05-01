@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:01:54 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/28 21:27:38 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/01 19:14:34 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ void	get_map(char *line, int fd, t_data *data)
 		free(line);
 	}
 	data->t_map->map[i + 1] = 0;
-/* 	i = -1;
-	while(data->t_map->map[++i])
-		printf("%s", data->t_map->map[i]); */
 }
 
 void	size_map(char *line, int fd, t_data *data)
@@ -104,4 +101,6 @@ void	save_map(char *argv, t_data *data)
 	search_map(argv, data, 0);
 	search_map(argv, data, 1);
 	read_map(data);
+	check_player(data);
+	validate_map(data);
 }

@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/02 15:15:02 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:34:42 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ typedef struct s_colision {
 typedef struct s_map
 {
 	char	player;
-	char	*NO_img;
-	char	*SO_img;
-	char	*EA_img;
-	char	*WE_img;
+	void	*NO_img;
+	void	*SO_img;
+	void	*EA_img;
+	void	*WE_img;
 	int		floor[3];
 	int		ceiling[3];
 	char	**map;
@@ -82,6 +82,7 @@ int		handle_destroy(t_data *data);
 /*-DRAW-*/
 int		encode_rgb(int red, int green, int blue);
 void	draw_pixel(t_data *data, int x, int y, int color);
+int		get_pixel(t_data *data, char *texture, int x, int y);
 void	draw_rect(int *oxy, int dim, int color, t_data *data);
 void	draw_column(t_data *data, int x, int h);
 void	draw_back(t_data *data);

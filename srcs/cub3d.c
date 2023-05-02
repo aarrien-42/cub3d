@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/02 14:50:15 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:36:45 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,17 @@ int	render(t_data *data)
 {
 	double	ra;
 	double	d;
-	int		i;
+	int		x;
 
-	i = 0;
+	x = 0;
 	draw_back(data);
-	while (i < WIDTH)
+	while (x < WIDTH)
 	{
 		data->pa = fix_angle(data->pa);
-		ra = fix_angle(data->pa + (FOV / 2) - (FOV / WIDTH * i));
+		ra = fix_angle(data->pa + (FOV / 2) - (FOV / WIDTH * x));
 		d = raycast(ra, data->px, data->py, data);
-		draw_column(data, i, (UNIT / d) * ((WIDTH / 2) / tan(FOV / 2)));
-		i++;
+		draw_column(data, x, (UNIT / d) * ((WIDTH / 2) / tan(FOV / 2)));
+		x++;
 	}
 	show_map(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);

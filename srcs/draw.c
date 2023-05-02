@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:35:08 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/28 16:29:13 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:31:45 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ void	draw_pixel(t_data *data, int x, int y, int color)
 
 	pos = data->addr + (y * data->size + x * (data->bpp / 8));
 	*(unsigned int *)pos = color;
+}
+
+int	get_pixel(t_data *data, char *texture, int x, int y)
+{
+	char	*pos;
+
+	pos = texture + (y * data->size + x * (data->bpp / 8));
+	return (*pos);
 }
 
 void	draw_rect(int *oxy, int dim, int color, t_data *data)

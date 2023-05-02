@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/02 17:29:37 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:58:48 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,13 @@ typedef struct s_texture
 	int				endian;
 }					t_texture;
 
-
 typedef struct s_map
 {
 	char		player;
-	t_texture	*NO_img;
-	t_texture	*SO_img;
-	t_texture	*EA_img;
-	t_texture	*WE_img;
+	t_texture	*no_img;
+	t_texture	*so_img;
+	t_texture	*ea_img;
+	t_texture	*we_img;
 	int			floor[3];
 	int			ceiling[3];
 	char		**map;

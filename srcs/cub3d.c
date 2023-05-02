@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/02 15:36:45 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:59:19 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	show_map(t_data *data)
 
 void	init_map(t_map *map)
 {
-	map->SO_img = NULL;
-	map->NO_img = NULL;
-	map->EA_img = NULL;
-	map->WE_img = NULL;
+	map->so_img = NULL;
+	map->no_img = NULL;
+	map->ea_img = NULL;
+	map->we_img = NULL;
 }
 
 int	render(t_data *data)

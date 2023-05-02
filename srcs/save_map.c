@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:01:54 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/02 17:30:42 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:56:35 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	get_map(char *line, int fd, t_data *data)
 		data->t_map->map[++i] = ft_strdup(line);
 		free(line);
 	}
-	data->t_map->map[i + 1] = 0;		
+	data->t_map->map[i + 1] = 0;
 }
 
 void	size_map(char *line, int fd, t_data *data)

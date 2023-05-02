@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:59:23 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/27 14:52:30 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:46:10 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@ int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == 53)
 		handle_destroy(data);
-	if (keysym == 13) // forward
+	if (keysym == 13)
 		move_gestor(1, data);
-	if (keysym == 0) // left
+	if (keysym == 0)
 		move_gestor(5, data);
-	if (keysym == 1) // back
+	if (keysym == 1)
 		move_gestor(3, data);
-	if (keysym == 2) // right
+	if (keysym == 2)
 		move_gestor(7, data);
-	if (keysym == 123) // view left
+	if (keysym == 123)
 		rotate_gestor(1, data);
-	if (keysym == 124) // view right
+	if (keysym == 124)
 		rotate_gestor(3, data);
-	if (keysym == 126) // view up
+	if (keysym == 126)
 		rotate_gestor(5, data);
-	if (keysym == 125) // view down
+	if (keysym == 125)
 		rotate_gestor(7, data);
 	return (0);
 }

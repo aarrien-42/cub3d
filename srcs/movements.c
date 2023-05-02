@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:14:50 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/28 16:26:18 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:49:14 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,27 @@
 
 int	move(t_data *data, double angle)
 {
-	int	step;
+	int		step;
+	char	*not_wall;
+	char	**map;
+	int		x;
+	int		y;
 
 	step = 16;
+	not_wall = "0NSWE";
+	x = (int)data->px;
+	y = (int)data->py;
+	map = data->t_map->map;
 	angle = fix_angle(angle);
 	if ((angle < M_PI && \
-		data->t_map->map[(int)(data->py - step) / UNIT][(int)data->px / UNIT] == '0') || \
+		ft_strchr(not_wall, map[(y - step) / UNIT][x / UNIT]) != 0) || \
 		(angle > M_PI && \
-		data->t_map->map[(int)(data->py + step) / UNIT][(int)data->px / UNIT] == '0'))
+		ft_strchr(not_wall, map[(y + step) / UNIT][x / UNIT]) != 0))
 			data->py -= sin(angle) * MOVE_SPEED;
 	if (((angle < M_PI / 2 || angle > 3 * M_PI / 2) && \
-		(data->t_map->map[(int)data->py / UNIT][(int)(data->px + step) / UNIT] == '0')) || \
+		ft_strchr(not_wall, map[y / UNIT][(x + step) / UNIT]) != 0) || \
 		((angle > M_PI / 2 && angle < 3 * M_PI / 2) && \
-		(data->t_map->map[(int)data->py / UNIT][(int)(data->px - step) / UNIT] == '0')))
+		(ft_strchr(not_wall, map[y / UNIT][(x - step) / UNIT]) != 0)))
 			data->px += cos(angle) * MOVE_SPEED;
 	return (0);
 }

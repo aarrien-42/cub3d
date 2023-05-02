@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/02 13:09:17 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:15:02 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ typedef struct s_map
 }			t_map;
 
 /*-CUB3D-*/
-double	fix_angle(double angle);
 void	show_map(t_data *data);
+void	init_map(t_map *map);
 int		render(t_data *data);
 int		loop(t_data *data);
 void	init_values(t_data *data);
@@ -92,11 +92,18 @@ int		move_gestor(int code, t_data *data);
 int		rotate_gestor(int code, t_data *data);
 
 /*-RAYCAST-*/
-double	normalize(double angle);
-double	rad_to_deg(double angle);
+int		calc_col_v_data(double ra, int px, int py, t_colision *c);
 double	col_v(double ra, int px, int py, t_data *data);
+int		calc_col_h_data(double ra, int px, int py, t_colision *c);
 double	col_h(double ra, int px, int py, t_data *data);
 int		raycast(double ra, int px, int py, t_data *data);
+
+/*-RAYCAST_UTILS-*/
+double	fix_angle(double angle);
+double	normalize(double angle);
+double	rad_to_deg(double angle);
+double	distance(int px, int py, int cx, int cy);
+int		leave_map(t_data *data, t_colision	*c);
 
 /*-CHECK_FILE-*/
 int		check_file(char *argv, t_data *data);

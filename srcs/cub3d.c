@@ -6,20 +6,11 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/02 13:23:42 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:50:15 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cub3d.h"
-
-double	fix_angle(double angle)
-{
-	if (angle < 0)
-		angle += 2 * M_PI;
-	if (angle > 2 * M_PI)
-		angle -= 2 * M_PI;
-	return (angle);
-}
 
 void	show_map(t_data *data)
 {
@@ -40,7 +31,8 @@ void	show_map(t_data *data)
 		xy[1]++;
 	}
 }
-void init_map(t_map *map)
+
+void	init_map(t_map *map)
 {
 	map->SO_img = NULL;
 	map->NO_img = NULL;
@@ -80,16 +72,32 @@ int	loop(t_data *data)
 
 void	init_values(t_data *data)
 {
+	int	j;
 	int	i;
 
-	i = 0;
-	while (data->t_map->map[i])
-		i++;
-	data->t_map->map_h = i;
+	j = -1;
+	while (data->t_map->map[++j])
+	{
+		i = -1;
+		while (data->t_map->map[j][++i])
+		{
+			if (data->t_map->map[j][i] == data->t_map->player)
+			{
+				data->px = i * UNIT + UNIT / 2;
+				data->py = j * UNIT + UNIT / 2;
+			}
+		}
+	}
+	data->t_map->map_h = j;
+	if (data->t_map->player == 'N')
+		data->pa = 1 * (M_PI / 2);
+	else if (data->t_map->player == 'S')
+		data->pa = 3 * (M_PI / 2);
+	else if (data->t_map->player == 'E')
+		data->pa = 0 * (M_PI / 2);
+	else if (data->t_map->player == 'W')
+		data->pa = 2 * (M_PI / 2);
 	data->h_line = HEIGHT / 2;
-	data->pa = 0 * (M_PI / 180);
-	data->px = 96;
-	data->py = 96;
 }
 
 int main(int argc, char **argv)

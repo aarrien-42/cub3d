@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:03:47 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/01 19:13:15 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:14:46 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../incs/cub3d.h"
 
 void	error_map(char **line, int i, t_data *data)
 {

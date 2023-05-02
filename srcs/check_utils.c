@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 17:24:21 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/27 19:55:02 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:14:28 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../incs/cub3d.h"
 
 int	ft_open(char *argv)
 {

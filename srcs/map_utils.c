@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 18:54:25 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/01 19:14:08 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:14:43 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../incs/cub3d.h"
 
 void	first_line(char **line, t_data *data)
 {
@@ -36,7 +36,7 @@ void	first_character(char **line, int i, t_data *data)
 		printf("Error: Mapa invalido\nprimer caracter mal\n");
 		split_free(data->t_map->map);
 		ft_texture_free(data->t_map, 1);
-	}	
+	}
 }
 
 void	check_character(char **line, int i, t_data *data)

@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/02 13:03:25 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:09:17 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ typedef struct s_data {
 	int				size;
 	int				endian;
 	int				h_line;
-	int				map_w;
-	int				map_h;
 	double			pa;
 	double			px;
 	double			py;
@@ -66,6 +64,7 @@ typedef struct s_map
 	int		floor[3];
 	int		ceiling[3];
 	char	**map;
+	int		map_h;
 }			t_map;
 
 /*-CUB3D-*/

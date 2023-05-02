@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:03:31 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/28 16:27:54 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:24:14 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ double	col_v(double ra, int px, int py, t_data *data)
 	calc_col_v_data(ra, px, py, &c);
 	while (1)
 	{
-		if (c.cy / UNIT < 0 || c.cx / UNIT < 0 || c.cy / UNIT > data->map_h - 1 || c.cx / UNIT > data->map_w - 1)
+		if (c.cy / UNIT < 0 || c.cx / UNIT < 0 || c.cy / UNIT > data->t_map->map_h - 1 || c.cx / UNIT > (int)ft_strlen(data->t_map->map[(int)c.cy / UNIT]) - 1)
 			return (1e30);
-		if (data->t_map->map[(int)(c.cy / UNIT)][(int)(c.cx / UNIT)] > '0')
+		if (data->t_map->map[(int)(c.cy / UNIT)][(int)(c.cx / UNIT)] == '1')
 			return (distance(px, py, c.cx, c.cy));
 		c.cx += c.ix;
 		c.cy += c.iy;
@@ -115,9 +115,9 @@ double	col_h(double ra, int px, int py, t_data *data)
 	calc_col_h_data(ra, px, py, &c);
 	while (1)
 	{
-		if (c.cy / UNIT < 0 || c.cx / UNIT < 0 || c.cy / UNIT > data->map_h - 1 || c.cx / UNIT > data->map_w - 1)
+		if (c.cy / UNIT < 0 || c.cx / UNIT < 0 || c.cy / UNIT > data->t_map->map_h - 1 || c.cx / UNIT > (int)ft_strlen(data->t_map->map[(int)c.cy / UNIT]) - 1)
 			return (1e30);
-		if (data->t_map->map[(int)(c.cy / UNIT)][(int)(c.cx / UNIT)] > '0')
+		if (data->t_map->map[(int)(c.cy / UNIT)][(int)(c.cx / UNIT)] == '1')
 			return (distance(px, py, c.cx, c.cy));
 		c.cx += c.ix;
 		c.cy += c.iy;

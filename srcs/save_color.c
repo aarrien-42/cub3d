@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   save_color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:10:57 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/28 20:33:56 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:14:52 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../incs/cub3d.h"
 
 void	save_number(char *line, char **split_color, t_data *data)
 {

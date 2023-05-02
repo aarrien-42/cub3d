@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:53:07 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/28 21:01:22 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:14:25 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../incs/cub3d.h"
 
 void	save_token(char *argv, t_data *data)
 {
@@ -54,7 +54,7 @@ void	map(char *line, int fd)
 			ft_close(fd);
 			exit(-1);
 		}
-	}		
+	}
 }
 
 size_t	check_spaces(char *line)

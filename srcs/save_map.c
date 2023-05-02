@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   save_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:01:54 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/01 19:14:34 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:14:56 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../incs/cub3d.h"
 
 void	get_map(char *line, int fd, t_data *data)
 {

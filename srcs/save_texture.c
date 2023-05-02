@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   save_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 20:42:25 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/28 20:33:01 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:14:59 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../incs/cub3d.h"
 
 void	get_texture2(char **dir, char *aux, t_data *data, int fd)
 {
@@ -71,7 +71,7 @@ void	save_texture(char **dir, char *token, t_data *data, int fd)
 		strim = ft_strtrim(dir[1], " ");
 		aux = ft_substr(strim, 0, ft_strlen(strim));
 		free(strim);
-	}	
+	}
 	open_check_ext(aux, token, data->t_map, fd);
 	get_texture(dir, aux, data, fd);
 }

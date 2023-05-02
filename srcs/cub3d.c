@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/02 13:03:18 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:23:42 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	show_map(t_data *data)
 	int	xy[2];
 
 	xy[1] = 0;
-	while (xy[1] < data->map_h)
+	while (xy[1] < data->t_map->map_h)
 	{
 		xy[0] = 0;
-		while (xy[0] < data->map_w)
+		while (xy[0] < (int)ft_strlen(data->t_map->map[xy[1]]))
 		{
-			if (data->t_map->map[xy[1]][xy[0]] != 0)
+			if (data->t_map->map[xy[1]][xy[0]] == '1')
 				draw_rect(xy, MAP_PIXEL, encode_rgb(0, 0, 0), data);
 			if (xy[0] == (int)data->px / UNIT && xy[1] == (int)data->py / UNIT)
 				draw_rect(xy, MAP_PIXEL, encode_rgb(255, 255, 255), data);
@@ -80,10 +80,14 @@ int	loop(t_data *data)
 
 void	init_values(t_data *data)
 {
+	int	i;
+
+	i = 0;
+	while (data->t_map->map[i])
+		i++;
+	data->t_map->map_h = i;
 	data->h_line = HEIGHT / 2;
 	data->pa = 0 * (M_PI / 180);
-	data->map_h = 24;
-	data->map_w = 24;
 	data->px = 96;
 	data->py = 96;
 }
@@ -106,17 +110,13 @@ int main(int argc, char **argv)
 	init_values(&data);
 	data.image = mlx_new_image (data.mlx, WIDTH, HEIGHT);
 	data.addr = mlx_get_data_addr(data.image, &data.bpp, &data.size, &data.endian);
-<<<<<<< HEAD
-/* 	render(&data);
-=======
-	//render(&data);
->>>>>>> aarrien
+ 	render(&data);
 	mlx_hook(data.win, 2, (1L << 0), &handle_keypress, &data);
 	mlx_hook(data.win, 3, (1L << 1), &handle_keyrelease, &data);
 	mlx_hook(data.win, 17, 0, &handle_destroy, &data);
 	mlx_loop_hook(data.mlx, &loop, &data);
 	mlx_loop(data.mlx);
 	mlx_loop_hook(data.mlx, &render, &data);
-	mlx_loop(data.mlx); */
+	mlx_loop(data.mlx);
 	return (0);
 }

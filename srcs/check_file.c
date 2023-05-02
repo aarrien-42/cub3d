@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:20:46 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/04/28 21:06:42 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:14:23 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../incs/cub3d.h"
 
 void	check_extension(const char *argv, const char *ext)
 {
@@ -37,7 +37,7 @@ void	check_extension(const char *argv, const char *ext)
 }
 
 int	repeated_or_null(int *cont, char *token)
-{	
+{
 	if (*cont != 1)
 	{
 		if (*cont == 0)

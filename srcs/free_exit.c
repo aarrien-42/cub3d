@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:37:33 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/02 17:19:27 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:35:58 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_texture_free(t_map *map, int flag)
 	if (map->WE_img)
 	{
 		free(map->WE_img->img);
-		free(map->EA_img);
+		free(map->WE_img);
 	}
 	free(map);
 	if (flag == 1)

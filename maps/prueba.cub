@@ -1,0 +1,12 @@
+NO ./textures/BRICK_WALL.xpm
+SO ./textures/PLANT_WALL.xpm
+WE ./textures/STONE_WALL.xpm
+EA ./textures/WOOD_WALL.xpm
+
+F 220,100,0
+C 225,30,0
+
+1111111111
+1000000001
+1000000001
+1111111111

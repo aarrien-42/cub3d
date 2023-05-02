@@ -11,7 +11,7 @@ INC = incs
 # Ficheros
 
 SRC_FILES = cub3d events draw raycast raycast_utils movements check_file check_utils check_map \
-			save_texture free_exit save_color check_utils2 save_map map map_utils
+			save_texture free_exit save_color check_utils2 save_map map map_utils texture
 
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

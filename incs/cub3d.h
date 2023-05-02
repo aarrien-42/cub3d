@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/02 15:34:42 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:29:37 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 #define UNIT 64
 #define MOVE_SPEED 3
 #define ROTATE_SPEED 3
-#define MAP_PIXEL 4
+#define MAP_PIXEL 2
 
 int	color;
 
@@ -54,17 +54,27 @@ typedef struct s_colision {
 	double		iy;
 }				t_colision;
 
+typedef struct s_texture
+{
+	void			*img;
+	char			*addr;
+	int				bpp;
+	int				size;
+	int				endian;
+}					t_texture;
+
+
 typedef struct s_map
 {
-	char	player;
-	void	*NO_img;
-	void	*SO_img;
-	void	*EA_img;
-	void	*WE_img;
-	int		floor[3];
-	int		ceiling[3];
-	char	**map;
-	int		map_h;
+	char		player;
+	t_texture	*NO_img;
+	t_texture	*SO_img;
+	t_texture	*EA_img;
+	t_texture	*WE_img;
+	int			floor[3];
+	int			ceiling[3];
+	char		**map;
+	int			map_h;
 }			t_map;
 
 /*-CUB3D-*/
@@ -139,7 +149,6 @@ void	get_image(char *line, char *token, t_data *data, int fd);
 void	save_texture(char **dir, char *token, t_data *data, int fd);
 void	open_check_ext(char *texture, char *token, t_map *map, int fd);
 void	get_texture(char **dir, char *aux, t_data *data, int fd);
-int		check_texture(char *txt, char **dir, char *aux, int fd);
 
 /*-SAVE_COLOR*/
 void	get_color(char *line, char token, t_data *data, int fd);
@@ -154,6 +163,12 @@ void	search_map(char *argv, t_data *data, int flag);
 void	map_location(char *line, int fd, t_data *data, int flag);
 void	size_map(char *line, int fd, t_data *data);
 void	get_map(char *line, int fd, t_data *data);
+
+/*-TEXTURE-*/
+void	ft_no_texture(char **dir, char *aux, t_data *data, int fd);
+void	ft_so_texture(char **dir, char *aux, t_data *data, int fd);
+void	ft_we_texture(char **dir, char *aux, t_data *data, int fd);
+void	ft_ea_texture(char **dir, char *aux, t_data *data, int fd);
 
 /*-MAP-*/
 void	read_map(t_data *data);

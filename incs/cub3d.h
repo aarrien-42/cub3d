@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/02 17:58:48 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:04:18 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 # include "../incs/libft.h"
 # include "../mlx/mlx.h"
 
-#define HEIGHT 640
-#define WIDTH 1080
-#define FOV M_PI/3
-#define UNIT 64
-#define MOVE_SPEED 3
-#define ROTATE_SPEED 3
-#define MAP_PIXEL 2
+# define HEIGHT 640
+# define WIDTH 1080
+# define FOV M_PI/3
+# define UNIT 64
+# define MOVE_SPEED 3
+# define ROTATE_SPEED 3
+# define MAP_PIXEL 2
 
 int	color;
 
@@ -74,7 +74,7 @@ typedef struct s_map
 	int			ceiling[3];
 	char		**map;
 	int			map_h;
-}			t_map;
+}				t_map;
 
 /*-CUB3D-*/
 void	show_map(t_data *data);

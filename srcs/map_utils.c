@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 18:54:25 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/02 13:14:43 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:11:43 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ void	check_character(char **line, int i, t_data *data)
 			|| line[i][j] == 'W' || line[i][j] == 'S')
 			&& ((line[i][j + 1] == ' ' || line[i][j + 1] == '\n') \
 			|| line[i][j - 1] == ' ' \
-			|| (line[i + 1][j] == ' ' || line[i + 1][j] == '\n') \
-			|| line[i - 1][j] == ' ' ))
+			|| (!line[i + 1] || line[i + 1][j] == ' ' \
+			|| line[i + 1][j] == '\n') \
+			|| (!line[i - 1] || line[i - 1][j] == ' ' \
+			|| line[i - 1][j] == '\n')))
 		{
 			printf("Error: Mapa invalido\nno esta cerrado\n");
 			split_free(data->t_map->map);

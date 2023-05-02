@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/04/28 16:20:10 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:38:30 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct s_data {
 	int				bpp;
 	int				size;
 	int				endian;
-	int				**map;
 	int				h_line;
 	int				map_w;
 	int				map_h;

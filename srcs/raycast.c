@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:03:31 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/02 15:10:34 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/03 16:50:20 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,19 @@ int	calc_col_v_data(double ra, int px, int py, t_colision *c)
 	return (0);
 }
 
-double	col_v(double ra, int px, int py, t_data *data)
+t_colision	col_v(double ra, int px, int py, t_data *data)
 {
 	t_colision	c;
 
 	if (ra == (2 * M_PI) || ra == M_PI || ra == 0)
-		return (1e30);
+		return (c.dist = 1e30, c);
 	calc_col_v_data(ra, px, py, &c);
 	while (1)
 	{
 		if (leave_map(data, &c) == 1)
-			return (1e30);
+			return (c.dist = 1e30, c);
 		if (data->t_map->map[(int)(c.cy / UNIT)][(int)(c.cx / UNIT)] == '1')
-			return (distance(px, py, c.cx, c.cy));
+			return (c.dist = distance(data->px, data->py, c.cx, c.cy), c);
 		c.cx += c.ix;
 		c.cy += c.iy;
 	}
@@ -84,35 +84,47 @@ int	calc_col_h_data(double ra, int px, int py, t_colision *c)
 	return (0);
 }
 
-double	col_h(double ra, int px, int py, t_data *data)
+t_colision	col_h(double ra, int px, int py, t_data *data)
 {
 	t_colision	c;
 
 	if (ra == M_PI / 2 || ra == 3 * M_PI / 2)
-		return (1e30);
+		return (c.dist = 1e30, c);
 	calc_col_h_data(ra, px, py, &c);
 	while (1)
 	{
 		if (leave_map(data, &c) == 1)
-			return (1e30);
+			return (c.dist = 1e30, c);
 		if (data->t_map->map[(int)(c.cy / UNIT)][(int)(c.cx / UNIT)] == '1')
-			return (distance(px, py, c.cx, c.cy));
+			return (c.dist = distance(data->px, data->py, c.cx, c.cy), c);
 		c.cx += c.ix;
 		c.cy += c.iy;
 	}
 }
 
-// podría devolver una estructura t_colision, y calculariamos la distancia después
-int	raycast(double ra, int px, int py, t_data *data)
+t_colision	raycast(double ra, int px, int py, t_data *data)
 {
-	double	dh;
-	double	dv;
+	t_colision	ch;
+	t_colision	cv;
 
-	dh = col_h(ra, px, py, data);
-	dv = col_v(ra, px, py, data);
-	if (dh < dv)
-		return (color = encode_rgb(50, 136, 18), dh * cos(fabs(ra - data->pa)));
+	ch = col_h(ra, px, py, data);
+	cv = col_v(ra, px, py, data);
+	if (ch.dist < cv.dist)
+	{
+		if (ra > M_PI / 2 && ra < 3 * M_PI / 2)
+			ch.texture = data->t_map->we_img;
+		else
+			ch.texture = data->t_map->ea_img;
+		ch.dist = ch.dist * cos(fabs(ra - data->pa));
+		return (ch);
+	}
 	else
-		return (color = encode_rgb(77, 217, 25), dv * cos(fabs(ra - data->pa)));
-	return (0);
+	{
+		if (ra < M_PI)
+			cv.texture = data->t_map->no_img;
+		else
+			cv.texture = data->t_map->so_img;
+		cv.dist = cv.dist * cos(fabs(ra - data->pa));
+		return (cv);
+	}
 }

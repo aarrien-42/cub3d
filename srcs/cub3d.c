@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/02 17:59:19 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/03 16:55:42 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,11 @@ void	show_map(t_data *data)
 	}
 }
 
-void	init_map(t_map *map)
-{
-	map->so_img = NULL;
-	map->no_img = NULL;
-	map->ea_img = NULL;
-	map->we_img = NULL;
-}
-
 int	render(t_data *data)
 {
-	double	ra;
-	double	d;
-	int		x;
+	double		ra;
+	t_colision	c;
+	int			x;
 
 	x = 0;
 	draw_back(data);
@@ -52,8 +44,8 @@ int	render(t_data *data)
 	{
 		data->pa = fix_angle(data->pa);
 		ra = fix_angle(data->pa + (FOV / 2) - (FOV / WIDTH * x));
-		d = raycast(ra, data->px, data->py, data);
-		draw_column(data, x, (UNIT / d) * ((WIDTH / 2) / tan(FOV / 2)));
+		c = raycast(ra, data->px, data->py, data);
+		draw_column(data, c, x, (UNIT / c.dist) * ((WIDTH / 2) / tan(FOV / 2)));
 		x++;
 	}
 	show_map(data);
@@ -70,55 +62,23 @@ int	loop(t_data *data)
 	return (0);
 }
 
-void	init_values(t_data *data)
+int	main(int argc, char **argv)
 {
-	int	j;
-	int	i;
+	t_data	data;
 
-	j = -1;
-	while (data->t_map->map[++j])
-	{
-		i = -1;
-		while (data->t_map->map[j][++i])
-		{
-			if (data->t_map->map[j][i] == data->t_map->player)
-			{
-				data->px = i * UNIT + UNIT / 2;
-				data->py = j * UNIT + UNIT / 2;
-			}
-		}
-	}
-	data->t_map->map_h = j;
-	if (data->t_map->player == 'N')
-		data->pa = 1 * (M_PI / 2);
-	else if (data->t_map->player == 'S')
-		data->pa = 3 * (M_PI / 2);
-	else if (data->t_map->player == 'E')
-		data->pa = 0 * (M_PI / 2);
-	else if (data->t_map->player == 'W')
-		data->pa = 2 * (M_PI / 2);
-	data->h_line = HEIGHT / 2;
-}
-
-int main(int argc, char **argv)
-{
 	(void)argc;
-	t_data		data;
-
 	data.t_map = (t_map *)malloc(sizeof(t_map));
-	if(!data.t_map)
-	{
-		perror("Malloc");
-		return (-1);
-	}
- 	data.mlx = mlx_init();
+	if (!data.t_map)
+		return (perror("Malloc"), -1);
+	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "cub3D");
 	init_map(data.t_map);
 	check_file(argv[1], &data);
 	init_values(&data);
 	data.image = mlx_new_image (data.mlx, WIDTH, HEIGHT);
-	data.addr = mlx_get_data_addr(data.image, &data.bpp, &data.size, &data.endian);
- 	render(&data);
+	data.addr = mlx_get_data_addr(data.image, \
+	&data.bpp, &data.size, &data.endian);
+	render(&data);
 	mlx_hook(data.win, 2, (1L << 0), &handle_keypress, &data);
 	mlx_hook(data.win, 3, (1L << 1), &handle_keyrelease, &data);
 	mlx_hook(data.win, 17, 0, &handle_destroy, &data);

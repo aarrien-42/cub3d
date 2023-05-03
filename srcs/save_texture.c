@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 20:42:25 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/03 16:52:35 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:00:28 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,25 @@ void	save_texture(char **dir, char *token, t_data *data, int fd)
 	get_texture(dir, aux, data, fd);
 }
 
+void	cont_argv(char **dir, int cont, int fd, char *token)
+{
+	if (cont >= 3)
+	{
+		if (cont == 3 && dir[2][0] != '\n')
+		{
+			ft_close(fd);
+			printf("Error: %s Hay mas de una direccion\n", token);
+			exit (-1);
+		}
+		else
+		{
+			ft_close(fd);
+			printf("Error: %s Hay mas de una direccion\n", token);
+			exit (-1);
+		}
+	}
+}
+
 void	get_image(char *line, char *token, t_data *data, int fd)
 {
 	char	**dir;
@@ -64,14 +83,6 @@ void	get_image(char *line, char *token, t_data *data, int fd)
 	cont = -1;
 	while (dir[++cont])
 		;
-	if (cont == 3)
-	{
-		if (dir[2][0] != '\n')
-		{
-			ft_close(fd);
-			printf("Error: %s Hay mas de una direccion\n", token);
-			exit (-1);
-		}
-	}
+	cont_argv(dir, cont, fd, token);
 	save_texture(dir, token, data, fd);
 }

@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/02 18:04:18 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:00:41 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ void	error_color(char token, int fd, t_data *data);
 void	get_image(char *line, char *token, t_data *data, int fd);
 void	save_texture(char **dir, char *token, t_data *data, int fd);
 void	open_check_ext(char *texture, char *token, t_map *map, int fd);
+void	cont_argv(char **dir, int cont, int fd, char *token);
 void	get_texture(char **dir, char *aux, t_data *data, int fd);
 
 /*-SAVE_COLOR*/

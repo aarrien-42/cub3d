@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/03 17:00:49 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:04:09 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,10 +147,18 @@ void		check_fin_color(char *line, int i, int fd, t_data *data);
 void		error_color(char token, int fd, t_data *data);
 
 /*-SAVE_TEXTURE*/
+<<<<<<< HEAD
 void		get_image(char *line, char *token, t_data *data, int fd);
 void		save_texture(char **dir, char *token, t_data *data, int fd);
 void		open_check_ext(char *texture, char *token, t_map *map, int fd);
 void		get_texture(char **dir, char *aux, t_data *data, int fd);
+=======
+void	get_image(char *line, char *token, t_data *data, int fd);
+void	save_texture(char **dir, char *token, t_data *data, int fd);
+void	open_check_ext(char *texture, char *token, t_map *map, int fd);
+void	cont_argv(char **dir, int cont, int fd, char *token);
+void	get_texture(char **dir, char *aux, t_data *data, int fd);
+>>>>>>> jdasilva
 
 /*-SAVE_COLOR*/
 void		get_color(char *line, char token, t_data *data, int fd);

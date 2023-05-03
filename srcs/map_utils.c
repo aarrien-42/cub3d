@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 18:54:25 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/02 18:11:43 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:08:43 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	first_line(char **line, t_data *data)
 	{
 		if (line[0][j] != '1' && line[0][j] != '\n' && line[0][j] != ' ')
 		{
-			printf("Error: Mapa invalido\nPrimera linea(borrar luego)\n");
+			printf("Error: Mapa invalido\n");
 			split_free(data->t_map->map);
 			ft_texture_free(data->t_map, 1);
 		}
@@ -33,7 +33,7 @@ void	first_character(char **line, int i, t_data *data)
 	if (line[i][0] == '0' || line[i][0] == 'N' || line[i][0] == 'E' \
 		|| line[i][0] == 'W' || line[i][0] == 'S')
 	{
-		printf("Error: Mapa invalido\nprimer caracter mal\n");
+		printf("Error: Mapa invalido\n");
 		split_free(data->t_map->map);
 		ft_texture_free(data->t_map, 1);
 	}
@@ -55,7 +55,7 @@ void	check_character(char **line, int i, t_data *data)
 			|| (!line[i - 1] || line[i - 1][j] == ' ' \
 			|| line[i - 1][j] == '\n')))
 		{
-			printf("Error: Mapa invalido\nno esta cerrado\n");
+			printf("Error: Mapa invalido\n");
 			split_free(data->t_map->map);
 			ft_texture_free(data->t_map, 1);
 		}
@@ -71,7 +71,7 @@ void	last_line(char **line, int i, t_data *data)
 	{
 		if (line[i][j] != '1' && line[i][j] != '\n' && line[i][j] != ' ')
 		{
-			printf("Error: Mapa invalido\nUltima linea(borrar luego)\n");
+			printf("Error: Mapa invalido\n");
 			split_free(data->t_map->map);
 			ft_texture_free(data->t_map, 1);
 		}

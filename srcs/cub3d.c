@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/03 17:47:53 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/03 18:31:30 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc > 2)
-		return(printf("Error\n"), -1);
+		return (printf("Error\n"), -1);
 	data.t_map = (t_map *)malloc(sizeof(t_map));
 	if (!data.t_map)
 		return (perror("Malloc"), -1);

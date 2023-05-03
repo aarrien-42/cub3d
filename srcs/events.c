@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:59:23 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/03 17:46:35 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/03 18:31:14 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ int	handle_destroy(t_data *data)
 	split_free(data->t_map->map);
 	ft_texture_free(data->t_map, 0);
 	exit(0);
-	return(0);
+	return (0);
 }

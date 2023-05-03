@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:53:07 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/02 13:14:25 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:53:32 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	map(char *line, int fd)
 	{
 		if (line[i] != '1' && line[i] != '0' && line[i] != 'N'\
 			&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W'\
-			&& line[i] != ' ' && line[i] != '\n')
+			&& line[i] != ' ' && line[i] != '\n' && line[i] != '\t')
 		{
 			printf("Error: Archivo no valido\n");
 			ft_close(fd);

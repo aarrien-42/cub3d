@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 18:54:25 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/03 18:31:05 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/03 18:37:23 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	last_line(char **line, int i, t_data *data)
 	while (line[i][++j])
 	{
 		if (line[i][j] != '1' && line[i][j] != '\n' && line[i][j] != ' ' \
-			&& line[i + 1][j] != '\t')
+			&& line[i][j] != '\t')
 		{
 			printf("Error: Mapa invalido\n");
 			split_free(data->t_map->map);

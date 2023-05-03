@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:51 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/03 18:31:30 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:09:21 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,17 @@ int	render(t_data *data)
 	double		ra;
 	t_colision	c;
 	int			x;
+	double		fov;
 
+	fov = M_PI / 3;
 	x = 0;
 	draw_back(data);
 	while (x < WIDTH)
 	{
 		data->pa = fix_angle(data->pa);
-		ra = fix_angle(data->pa + (FOV / 2) - (FOV / WIDTH * x));
+		ra = fix_angle(data->pa + (fov / 2) - (fov / WIDTH * x));
 		c = raycast(ra, data->px, data->py, data);
-		draw_column(data, c, x, (UNIT / c.dist) * ((WIDTH / 2) / tan(FOV / 2)));
+		draw_column(data, c, x, (UNIT / c.dist) * ((WIDTH / 2) / tan(fov / 2)));
 		x++;
 	}
 	show_map(data);

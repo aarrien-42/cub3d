@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/03 18:51:03 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:07:00 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define HEIGHT 640
 # define WIDTH 1080
-# define FOV "M_PI/3"
+//# define FOV M_PI/3
 # define UNIT 64
 # define MOVE_SPEED 3
 # define ROTATE_SPEED 3

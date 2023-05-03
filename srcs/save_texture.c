@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 20:42:25 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/02 17:31:00 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/03 16:52:35 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	save_texture(char **dir, char *token, t_data *data, int fd)
 void	get_image(char *line, char *token, t_data *data, int fd)
 {
 	char	**dir;
+	int		cont;
 
 	dir = ft_split(line, ' ');
 	free(line);
@@ -59,6 +60,18 @@ void	get_image(char *line, char *token, t_data *data, int fd)
 		ft_close(fd);
 		printf("Error: %s No hay direccion de textura\n", token);
 		exit (-1);
+	}
+	cont = -1;
+	while (dir[++cont])
+		;
+	if (cont == 3)
+	{
+		if (dir[2][0] != '\n')
+		{
+			ft_close(fd);
+			printf("Error: %s Hay mas de una direccion\n", token);
+			exit (-1);
+		}
 	}
 	save_texture(dir, token, data, fd);
 }

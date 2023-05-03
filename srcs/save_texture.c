@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 20:42:25 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/03 17:00:28 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:21:53 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	cont_argv(char **dir, int cont, int fd, char *token)
 			printf("Error: %s Hay mas de una direccion\n", token);
 			exit (-1);
 		}
-		else
+		else if (cont > 3)
 		{
 			ft_close(fd);
 			printf("Error: %s Hay mas de una direccion\n", token);

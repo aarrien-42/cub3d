@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:20:46 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/02 13:14:23 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:48:13 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,5 @@ int	check_file(char *argv, t_data *data)
 	check_extension(argv, ".cub");
 	check_token(argv);
 	check_map(argv, data);
-	printf("todo perfecto\n");
 	return (0);
 }

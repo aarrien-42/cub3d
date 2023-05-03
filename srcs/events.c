@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:59:23 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/02 14:46:10 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:46:35 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	handle_keyrelease(int keysym, t_data *data)
 int	handle_destroy(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
+	split_free(data->t_map->map);
+	ft_texture_free(data->t_map, 0);
 	exit(0);
-	return (0);
+	return(0);
 }

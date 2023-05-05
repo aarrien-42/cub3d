@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/05 11:19:35 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:05:36 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define UNIT 64
 # define MOVE_SPEED 5
 # define ROTATE_SPEED 5
-# define MAP_PIXEL 2
+# define MAP_PIXEL 4
 
 typedef struct s_data {
 	void			*mlx;

@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 20:42:25 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/03 17:21:53 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/05 17:24:55 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	get_image(char *line, char *token, t_data *data, int fd)
 	{
 		ft_close(fd);
 		printf("Error: %s No hay direccion de textura\n", token);
+		split_free(dir);
 		exit (-1);
 	}
 	cont = -1;

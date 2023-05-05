@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:03:47 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/02 13:14:46 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:54:39 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ void	read_map(t_data *data)
 	char	**line;
 
 	line = data->t_map->map;
+	if (!line)
+	{
+		printf("Error: No hay mapa\n");
+		ft_texture_free(data->t_map, 1);
+	}
 	end = 0;
 	i = -1;
 	while (line[++i])

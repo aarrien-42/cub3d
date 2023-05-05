@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/03 17:58:21 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/05 11:19:35 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 
 # define HEIGHT 640
 # define WIDTH 1080
-# define FOV M_PI/3
 # define UNIT 64
 # define MOVE_SPEED 5
 # define ROTATE_SPEED 5

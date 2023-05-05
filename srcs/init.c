@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:54:52 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/03 16:59:26 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:51:37 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_map(t_map *map)
 	map->no_img = NULL;
 	map->ea_img = NULL;
 	map->we_img = NULL;
+	map->map = NULL;
 }
 
 void	player_orientation(t_data *data)

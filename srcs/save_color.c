@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:10:57 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/02 13:14:52 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:23:23 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ void	get_color(char *line, char token, t_data *data, int fd)
 	cont_number(color_split, token, data, fd);
 	check_number(color_split, token, data, fd);
 	save_number(line, color_split, data);
+	split_free(color_split);
 	free(line);
 }

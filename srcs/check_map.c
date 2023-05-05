@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:53:07 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/03 17:53:32 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/05 17:02:38 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	save_token(char *argv, t_data *data)
 			get_color(line, 'F', data, fd);
 		else if (line[0] == 'C')
 			get_color(line, 'C', data, fd);
+		else
+			free(line);
 	}
 	ft_close(fd);
 }

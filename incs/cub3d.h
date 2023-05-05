@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/03 17:41:32 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:58:21 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define WIDTH 1080
 # define FOV M_PI/3
 # define UNIT 64
-# define MOVE_SPEED 3
-# define ROTATE_SPEED 3
+# define MOVE_SPEED 5
+# define ROTATE_SPEED 5
 # define MAP_PIXEL 2
 
 typedef struct s_data {

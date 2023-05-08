@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:10:57 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/05 16:23:23 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:50:25 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	cont_coma(char *line, char token, t_data *data, int fd)
 			|| line[i - 1] == ' ') && cont < 2)
 		{
 			ft_close(fd);
-			printf("Error: %c No puede a ver espacios en comas\n", token);
+			printf("Error: %c No puede haber espacios en comas\n", token);
 			ft_texture_free(data->t_map, 1);
 		}
 		if (line[i] == ',')

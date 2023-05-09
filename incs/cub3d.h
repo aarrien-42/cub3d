@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 08:57:58 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/05 12:05:36 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/09 20:09:49 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ void		check_character(char **line, int i, t_data *data);
 void		first_character(char **line, int i, t_data *data);
 void		first_line(char **line, t_data *data);
 void		last_line(char **line, int i, t_data *data);
+int			before_lastline(char **line, int i, t_data *data);
 
 /*-FREE_EXIT-*/
 void		ft_texture_free(t_map *map, int flag);

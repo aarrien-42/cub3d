@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 18:54:25 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/03 18:37:23 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:47:36 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,16 @@ void	check_character(char **line, int i, t_data *data)
 	j = -1;
 	while (line[i][++j])
 	{
+		if (ft_strlen(line[i]) > ft_strlen(line[i + 1]))
+			last_line(line, i, data);
 		if ((line[i][j] == '0' || line[i][j] == 'N' || line[i][j] == 'E' \
 			|| line[i][j] == 'W' || line[i][j] == 'S')
 			&& ((line[i][j + 1] == ' ' || line[i][j + 1] == '\n' \
 			|| line[i][j + 1] == '\t') \
 			|| (line[i][j - 1] == ' ' || line[i][j - 1] == '\t') \
-			|| (!line[i + 1] || line[i + 1][j] == ' ' \
+			|| (!line[i + 1][j] || line[i + 1][j] == ' ' \
 			|| line[i + 1][j] == '\n' || line[i + 1][j] == '\t') \
-			|| (!line[i - 1] || line[i - 1][j] == ' ' \
+			|| (!line[i - 1][j] || line[i - 1][j] == ' ' \
 			|| line[i - 1][j] == '\n' || line[i - 1][j] == '\t')))
 		{
 			printf("Error: Mapa invalido\n");

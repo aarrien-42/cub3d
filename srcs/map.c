@@ -6,7 +6,7 @@
 /*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:03:47 by jdasilva          #+#    #+#             */
-/*   Updated: 2023/05/09 20:09:13 by jdasilva         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:39:39 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,17 +107,15 @@ void	validate_map(t_data	*data)
 	i = 0;
 	if (line[0])
 		first_line(line, data);
-	while (++i < size - 2)
+	while (++i < size - 1)
 	{
 		first_character(line, i, data);
 		if (check_spaces(line[i + 1]) == ft_strlen(line[i + 1]))
 			break ;
+	if (before_lastline(line, i, data))
+			check_character(line, i, data);
 		check_character(line, i, data);
 	}
 	if (line[i])
-	{
-		if (before_lastline(line, i, data))
-			check_character(line, i, data);
-		last_line(line, ++i, data);
-	}
+		last_line(line, i, data);
 }

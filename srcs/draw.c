@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdasilva <jdasilva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:35:08 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/05/03 16:58:49 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:44:10 by jdasilva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 void	draw_pixel(t_data *data, int x, int y, int color)
 {
 	char	*pos;
-
-	pos = data->addr + (y * data->size + x * (data->bpp / 8));
-	*(unsigned int *)pos = color;
+	
+	if (x < WIDTH && y < HEIGHT)
+	{
+		pos = data->addr + (y * data->size + x * (data->bpp / 8));
+		*(unsigned int *)pos = color;
+	}
 }
 
 int	get_pixel(t_texture *t, int x, int y)
